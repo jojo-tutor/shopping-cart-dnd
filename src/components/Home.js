@@ -1,9 +1,16 @@
 import React from 'react'
+import { AuthUserContext } from './Session'
 
-export default function Home() {
+
+function Home() {
   return (
-    <div>
-      Home Page
-    </div>
+    <AuthUserContext.Consumer>
+      {user => (
+        <div>
+          Home Page
+        </div>
+      )}
+    </AuthUserContext.Consumer>
   )
 }
+export default Home
