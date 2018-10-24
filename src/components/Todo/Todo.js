@@ -15,14 +15,14 @@ export default class Todo extends React.Component {
 
   render() {
     const { title, description, completed } = this.props;
-    const checked = completed ? true : undefined;
+    const checked = completed ? true : false;
     return (
       <div className="todo">
         <input
           name="completed"
           type="checkbox"
           checked={checked}
-          onClick={this.onClick}
+          onChange={this.onClick}
         />
         <span className={completed ? "done" : ""}>
           {title}: {description}

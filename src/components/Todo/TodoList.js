@@ -1,30 +1,45 @@
 import React from "react";
 import "./styles.css";
-import uuid from 'uuid/v4'
 import debounce from 'lodash/debounce'
 import Todo from './Todo'
+import { db } from '../../firebase'
 // https://codesandbox.io/s/k3x3531535
 
 export default class TodoList extends React.Component {
   state = {
-    todos:[{
-      id: 1,
-      title: 'Test',
-      description: 'aa',
-      completed: false
-    },
-      {
-        id: 2,
-        title: '22',
-        description: 'aaxx',
-        completed: false
-      }],
+    todos:[],
     isEditMode: false,
     filteredTodos: [],
-    filter: ''
+    filter: '',
+    requesting: false,
+    fetching: true
   }
 
   fields = ['title', 'description']
+
+  componentDidMount() {
+    this.subscribe = db.getDocumentUpdates('todo', this.updateList)
+    this.updateList()
+  }
+
+  updateList = async() => {
+    let todos = await db.onceGetDocuments('todo')
+    if (todos) {
+      todos = Object.entries(todos).map(([id, value]) => {
+        return {
+          ...value,
+          id
+        }
+      })
+    } else {
+      todos = []
+    }
+    this.setState({ todos: todos, requesting: false, fetching: false })
+  }
+
+  componentWillUnmount() {
+    this.subscribe.off()
+  }
 
   getFormFields = () => {
     return this.fields.reduce((accum, field) => {
@@ -34,12 +49,7 @@ export default class TodoList extends React.Component {
   }
 
   onUpdate = (data) => {
-    let todos = this.state.todos.map(e => {
-      if(e.id === data.id)
-        return {...e, ...data}
-      return e
-    })
-    this.setState({ todos })
+    db.updateDocument('todo', data)
   }
 
   onCreate = () => {
@@ -49,11 +59,10 @@ export default class TodoList extends React.Component {
     }, true)
     if (isValid) {
       this.setState({
-        todos: [
-          ...this.state.todos,
-          { ...formFields, id: uuid() }
-        ],
-        isEditMode: false
+        isEditMode: false,
+        requesting: true
+      },() => {
+        db.createDocument('todo', { ...formFields, completed: false })
       })
     }
   }
@@ -70,10 +79,7 @@ export default class TodoList extends React.Component {
   }
 
   onDelete = ({ id }) => {
-    this.setState({
-      todos: this.state.todos.filter(e => e.id !== id),
-      filteredTodos: this.state.filteredTodos.filter(e => e.id !== id)
-    })
+    db.deleteDocument('todo', { id })
   }
 
   onFilter = debounce((event) => {
@@ -96,13 +102,13 @@ export default class TodoList extends React.Component {
   }
 
   render() {
-    const { todos, isEditMode, filteredTodos, filter } = this.state
+    const { todos, isEditMode, filteredTodos, filter, fetching  } = this.state
     const submitLabel = isEditMode ? 'Submit' : 'Add Todo'
     let list = filter ? filteredTodos : todos
     return (
       <>
       <input placeholder='Filter' name='filter' onChange={this.onFilterChange}/>
-      {list.map(e => (
+      {fetching ? 'Loading...' : list.map(e => (
         <Todo key={e.id} {...e} onUpdate={this.onUpdate} onDelete={this.onDelete}/>
       ))}
       {isEditMode && (
