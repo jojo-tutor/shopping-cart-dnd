@@ -3,21 +3,9 @@ import Login from './Login'
 import Signup from './Signup'
 import NotFound from './NotFound'
 import App from './App'
+import { TodoList } from './Todo'
 
 export default  [
-  {
-    component: App,
-    path: '/',
-    exact: true,
-    key: 'app',
-    routes: [
-      {
-        component: Home,
-        path: '/',
-        exact: true
-      }
-    ]
-  },
   {
     component: Login,
     key: 'app-login',
@@ -29,6 +17,23 @@ export default  [
     component: Signup,
     path: '/signup',
     exact: true
+  },
+  {
+    component: App,
+    path: '/',
+    key: 'app',
+    routes: [
+      {
+        component: Home,
+        path: '/',
+        exact: true
+      },
+      {
+        component: TodoList,
+        path: '/todo',
+        exact: true
+      },
+    ]
   },
   {
     component: NotFound,
