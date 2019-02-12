@@ -3,6 +3,7 @@ import Login from './Login'
 import Signup from './Signup'
 import NotFound from './NotFound'
 import App from './App'
+import ShoppingCart from '../ShoppingCart'
 import { TodoList } from './Todo'
 
 export default  [
@@ -24,7 +25,7 @@ export default  [
     key: 'app',
     routes: [
       {
-        component: Home,
+        component: ShoppingCart,
         path: '/',
         exact: true
       },
