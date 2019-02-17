@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
+const express = require('express')
 require('dotenv').config({ path: resolvePath('config/.env') })
 
 const configs = {
@@ -54,7 +55,7 @@ module.exports = (mode) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: resolvePath('public/index.html'),
+        template: resolvePath('views/index.html'),
       }),
       new webpack.DefinePlugin(getEnv()),
       mode === 'development' && new webpack.HotModuleReplacementPlugin(),
@@ -63,10 +64,16 @@ module.exports = (mode) => {
           filename: 'css/[name].[contenthash:8].css',
         }),
     ].filter(Boolean),
+    resolve: {
+      modules: ['node_modules', 'src']
+    },
     devServer: {
       open: true,
       port: PORT,
-      hotOnly: true
+      hotOnly: true,
+      before: (app) => {
+        app.use('/assets', express.static(resolvePath('public')))
+      }
     }
   }
 }
