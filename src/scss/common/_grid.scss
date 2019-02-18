@@ -1,0 +1,56 @@
+html {
+	.container {
+		width: 100%;
+		max-width: $container-width;
+		margin: 0 auto;
+		padding: 0 1em;
+	}
+
+	.row {
+		display: flex;
+		flex-wrap: wrap;
+
+		// .row-center
+		&-center {
+			justify-content: center;
+		}
+	}
+
+	.col {
+		flex-grow: 1;
+		flex-shrink: 1;
+		width: 100%;
+
+		@for $i from 1 through $grid-columns {
+			// not responsive
+			&-#{$i} {
+				max-width: percentage( $i / $grid-columns);
+			}
+
+			&-offset-#{$i} {
+				margin-left: percentage( $i / $grid-columns);
+			}
+		}
+	}
+
+	// if responsive
+
+	.col {
+		@each $screen , $value in $grid-screens {
+			@for $i from 1 through $grid-columns {
+				@media only screen and (min-width: $value) {
+					&-#{$screen} {
+						&-#{$i} {
+							max-width: percentage( $i / $grid-columns);
+						}
+
+						&-offset-#{$i} {
+							margin-left: percentage( $i / $grid-columns);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+

@@ -2,7 +2,9 @@ import React from 'react'
 import { renderRoutes } from 'react-router-config'
 import { NavLink, Link } from 'react-router-dom'
 import { AuthUserContext } from '../Session'
+import Navigation from '../Navigation'
 import { auth } from '../../firebase'
+import 'scss/base.scss'
 
 class App extends React.Component {
   render() {
@@ -14,14 +16,10 @@ class App extends React.Component {
     return(
       <AuthUserContext>
         {user => (
-          <div>
+          <div className='appContainer'>
             {user ? (
               <>
-                <div>
-                  <NavLink to='/' activeStyle={activeStyle}>Home</NavLink>
-                  <NavLink to='/todo' activeStyle={activeStyle}>Todos</NavLink>
-                </div>
-                <button onClick={auth.doSignOut}>Signout</button>
+                <Navigation doSignout={auth.doSignOut}/>
                 {renderRoutes(route.routes)}
               </>
             ): (

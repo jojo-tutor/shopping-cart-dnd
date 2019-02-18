@@ -95,14 +95,15 @@ class App extends Component {
     const { cartList } = this.state
 
     return (
-      <div className="App">
-
+      <div className="shop row">
         <Product
-          productHero='/images/shop.jpg'
+          className='col-sm-8'
+          productHero='/images/hero.jpg'
           productList={productList}
         />
 
         <Cart
+          className='col-sm-4'
           list={getCartProduct(cartList, productList)}
           onQuantityChange={this.handleQuantityChange}
         />

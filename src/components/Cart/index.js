@@ -4,6 +4,8 @@ import QuickTip from './QuickTip'
 import CartList from './CartList'
 import Total from './Total'
 
+import 'scss/cart/index.scss'
+
 const getTotal = (list) => {
   return list.reduce((acc, cur) => {
     const { quantity, product } = cur
@@ -11,11 +13,13 @@ const getTotal = (list) => {
   }, 0)
 }
 
-const Cart = (props) => {
-  const { list, onQuantityChange } = props
-
+const Cart = ({ 
+    list, 
+    onQuantityChange,
+    className 
+  }) => {
   return (
-    <div className="cart">
+    <div className={`cart ${className}`}>
       <Counter count={list.length} />
       <QuickTip />
       <CartList

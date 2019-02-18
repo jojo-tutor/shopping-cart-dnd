@@ -13,6 +13,17 @@ const ProductItem = (props) => {
           src={imageSource}
           alt='product'
         />
+
+        <div className='productCard_action'>
+          <img
+            className='icon' 
+            src='images/drag_action.png' 
+            alt=''/>
+          <p className='info'>
+            Drag this item to the cart to purchase
+          </p>
+        </div>
+
       </div>
 
       { isDiscounted && (
@@ -29,18 +40,27 @@ const ProductItem = (props) => {
           { description }
         </p>
 
-        <div className='prices'>
 
-          <div className='original'>
-            { originalPrice }
+        <div className='row_action'>
+          <div className='prices'>
+
+            <div className='original'>
+              ${ originalPrice }
+            </div>
+
+            { isDiscounted && (
+              <div className='sale'>
+                ${ sellPrice }
+              </div>
+            )}
           </div>
 
-          { isDiscounted && (
-            <div className='sale'>
-              { sellPrice }
-            </div>
-          )}
+          <button className='productCard_buynow'>
+            <i class='wtfs wtf-shopping-cart'></i>
+          </button>
         </div>
+
+
       </div>
     </div>
   )

@@ -1,0 +1,33 @@
+
+$icon-size: 5em;
+.cart_quicktip {
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #DAE6F5;
+	border-radius: .25em;
+	margin: .5em 0;
+	padding: 1em;
+
+	.icon {
+		width: $icon-size;
+	}
+
+	.tip {
+		width: calc( 100% - #{$icon-size} );
+
+		// .tip_header
+		&_header {
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		// .tip_note
+		&_note {
+			margin-top: 0;
+			margin-bottom: 0;
+			font-weight: 500;
+			color: $text-color-light;
+		}
+	}
+}
