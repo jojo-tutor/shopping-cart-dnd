@@ -1,0 +1,9 @@
+.product {
+	padding: 1em;
+	// .product_hero
+	&_hero {
+		width: 100%;
+		height: 20em;
+		overflow: hidden;
+	}
+}
