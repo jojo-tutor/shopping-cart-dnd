@@ -32,11 +32,11 @@ module.exports = (mode) => {
             },
             {
               test: /\.css$/,
-              use: getStyleLoaders({ importLoaders: 1 }, styleLoader),
+              use: getStyleLoaders({ importLoaders: 1,  url: false}, styleLoader),
             },
             {
               test: /\.(scss|sass)$/,
-              use: getStyleLoaders({ importLoaders: 2 }, styleLoader, 'sass-loader'),
+              use: getStyleLoaders({ importLoaders: 2, url: false }, styleLoader, 'sass-loader'),
             },
             {
               exclude: [/\.(js|mjs|jsx)$/, /\.html$/, /\.json$/],
@@ -72,7 +72,7 @@ module.exports = (mode) => {
       port: PORT,
       hotOnly: true,
       before: (app) => {
-        app.use('/assets', express.static(resolvePath('public')))
+        app.use(express.static(resolvePath('public')))
       }
     }
   }
