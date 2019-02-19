@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from '../Image'
 
 const CartItem = (props) => {
   const { item, onQuantityChange, onRemoveCartItem } = props
@@ -11,9 +12,9 @@ const CartItem = (props) => {
 
       <div className="row row_main">
         <div className="cart_item_graphic">
-          <img
+          <Image
             src={imageSource}
-            alt="product"
+            alt='Product'
           />
         </div>
 

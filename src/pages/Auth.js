@@ -1,33 +1,37 @@
 import React from 'react'
 import { renderRoutes } from 'react-router-config'
 import { NavLink, Link } from 'react-router-dom'
+import Image from '../components/Image'
 import { AuthUserContext } from '../auth'
 import { auth } from '../api'
 
 const Navigation = () => (
   <nav className='nav'>
-    <NavLink 
+    <NavLink
       className='nav_logo'
       activeClassName='active'
       to='/'>
-      <img src="/images/logo.png" alt=""/>
+      <Image
+        src="/images/logo.png"
+        alt="Logo"
+      />
     </NavLink>
     <div className='nav_links'>
-      <NavLink 
-        to='/' 
+      <NavLink
+        to='/'
         className='nav_link'
         activeClassName='active'>
         Home
       </NavLink>
-      <NavLink 
-        to='/todo' 
+      <NavLink
+        to='/todo'
         className='nav_link'
         activeClassName='active'>
         Todos
       </NavLink>
       <button
-        className='btn btn-inverted-red nav_logout' 
-        onClick={() => doSignout() }>
+        className='btn btn-inverted-red nav_logout'
+        onClick={auth.doSignOut}>
         Signout
       </button>
     </div>
@@ -49,9 +53,6 @@ const renderLogin = () => (
 const renderAuthenticated = (route) => (
   <>
     <Navigation />
-    <button onClick={auth.doSignOut}>
-      Signout
-    </button>
     { renderRoutes(route.routes) }
   </>
 )
