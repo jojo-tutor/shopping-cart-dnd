@@ -1,10 +1,8 @@
-import Home from './Home'
-import Login from './Login'
-import Signup from './Signup'
-import NotFound from './NotFound'
-import App from './App'
-import ShoppingCart from '../ShoppingCart'
-import { TodoList } from './Todo'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Authenticated from './pages/Authenticated'
+import ShoppingCart from './pages/ShoppingCart'
+import NotFound from './pages/NotFound'
 
 export default  [
   {
@@ -20,18 +18,13 @@ export default  [
     exact: true
   },
   {
-    component: App,
+    component: Authenticated,
     path: '/',
     key: 'app',
     routes: [
       {
         component: ShoppingCart,
         path: '/',
-        exact: true
-      },
-      {
-        component: TodoList,
-        path: '/todo',
         exact: true
       },
     ]
