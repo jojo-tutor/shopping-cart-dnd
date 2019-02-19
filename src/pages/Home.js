@@ -1,87 +1,24 @@
 import React, { Component } from 'react';
+import uuidv1 from 'uuid/v1'
 import Product from '../components/Product'
 import Cart from '../components/Cart'
-import { db } from '../api/firebase'
+import { onceGetDocuments } from '../api/db'
 
 const getCartProduct = (cartList, productList) => {
   return cartList.map(cart => ({ ...cart, product: productList.find(product => cart.productId === product.id) }))
 }
 
-const productList = [
-  {
-    id: 1,
-    title: 'PEEKABOO MINI',
-    description: 'White leather bag with exotic details',
-    originalPrice: 450,
-    sellPrice: 449,
-    imageSource: 'https://images.www.fendi.com/images/h0c/hb0/8913063378974/8BN244A6L8F170C_01_large#product-medium',
-  },
-  {
-    id: 2,
-    title: 'Fendi',
-    description: 'Bag Bugs T-shirt in black cotton',
-    originalPrice: 900,
-    sellPrice: 890,
-    imageSource: 'https://images.www.fendi.com/images/h33/h68/8918025142302/FY072294TF0QA1_01_large#product-medium',
-  },
-  {
-    id: 3,
-    title: 'CREW-NECK',
-    description: 'Cotton and cashmere sweater with intarsia',
-    originalPrice: 100,
-    sellPrice: 99,
-    imageSource: 'https://images.www.fendi.com/images/h0e/h87/8886205939742/JFG042A3TEF0QA1_01_large#product-medium',
-  },
-  {
-    id: 4,
-    title: 'PEEKABOO MINI',
-    description: 'White leather bag with exotic details',
-    originalPrice: 450,
-    sellPrice: 449,
-    imageSource: 'https://images.www.fendi.com/images/h0c/hb0/8913063378974/8BN244A6L8F170C_01_large#product-medium',
-  },
-  {
-    id: 5,
-    title: 'Fendi',
-    description: 'Bag Bugs T-shirt in black cotton',
-    originalPrice: 900,
-    sellPrice: 890,
-    imageSource: 'https://images.www.fendi.com/images/h33/h68/8918025142302/FY072294TF0QA1_01_large#product-medium',
-  },
-  {
-    id: 6,
-    title: 'CREW-NECK',
-    description: 'Cotton and cashmere sweater with intarsia',
-    originalPrice: 100,
-    sellPrice: 99,
-    imageSource: 'https://images.www.fendi.com/images/h0e/h87/8886205939742/JFG042A3TEF0QA1_01_large#product-medium',
-  }
-]
-
-const cartList = [
-  {
-    id: 1,
-    productId: 1,
-    quantity: 2
-  },
-  {
-    id: 2,
-    productId: 2,
-    quantity: 1
-  }
-]
-
 class Home extends Component {
   state = {
-    cartList,
-    productList
+    cartList: [],
+    productList: []
   }
 
   componentDidMount() {
-    // const products = onceGetDocuments('/products')
-    // console.log('products: ', products);
-    const products = db.ref('/products')
-    console.log('products: ', products);
+    onceGetDocuments('/products').then((products) => {
+      const productList = Object.entries(products).reduce((acc, [key, value]) => ([...acc, value]), [])
+      this.setState({ productList })
+    })
   }
 
   handleQuantityChange = (quantity, id) => {
@@ -97,8 +34,33 @@ class Home extends Component {
     })
   }
 
+  handleAddCartItem = (productId) => {
+    this.setState(({ cartList }) => {
+      const productExists = cartList.some(e => e.productId === productId)
+      if (productExists) {
+        return {
+          cartList: cartList.map(cartItem => {
+            if (cartItem.productId === productId) {
+              cartItem.quantity += 1
+            }
+            return cartItem
+          })
+        }
+      }
+
+      const cartItem = { id: uuidv1(), productId, quantity: 1 }
+      return {
+        cartList: [...cartList, cartItem]
+      }
+    })
+  }
+
+  handleRemoveCartItem = (id) => {
+    this.setState(({ cartList }) => ({ cartList: cartList.filter(e => e.id !== id) }))
+  }
+
   render() {
-    const { cartList } = this.state
+    const { productList, cartList } = this.state
 
     return (
       <div className="shop row">
@@ -106,12 +68,14 @@ class Home extends Component {
           className='col-sm-8'
           productHero='/images/hero.jpg'
           productList={productList}
+          onAddCartItem={this.handleAddCartItem}
         />
 
         <Cart
           className='col-sm-4'
           list={getCartProduct(cartList, productList)}
           onQuantityChange={this.handleQuantityChange}
+          onRemoveCartItem={this.handleRemoveCartItem}
         />
       </div>
     );

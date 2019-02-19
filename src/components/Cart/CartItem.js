@@ -3,8 +3,8 @@ import React from 'react'
 const CartItem = (props) => {
   const { item, onQuantityChange, onRemoveCartItem } = props
   const { id, quantity, product } = item
-  const { title, description, sellPrice, imageSource } = product
-  const total = Number(quantity) * Number(sellPrice)
+  const { title, description, price, imageSource } = product || {}
+  const total = Number(quantity) * Number(price)
 
   return (
     <div className="cart_item">
@@ -40,7 +40,7 @@ const CartItem = (props) => {
 
       <div className="row row_actions">
         <button 
-          onClick={onRemoveCartItem}
+          onClick={() => onRemoveCartItem(id)}
           className="cart_item_remove">
           remove item
         </button> 
