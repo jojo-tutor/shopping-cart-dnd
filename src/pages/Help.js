@@ -1,17 +1,16 @@
 import React from 'react'
 import { AuthUserContext } from '../auth'
 
-
-function Home() {
+function Help() {
   return (
     <AuthUserContext.Consumer>
       {user => (
         <div>
-          Home Page
+          Help Page
         </div>
       )}
     </AuthUserContext.Consumer>
   )
 }
 
-export default Home
+export default Help

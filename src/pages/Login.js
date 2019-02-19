@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { auth } from '../api'
 
 export default class Login extends React.Component {
-  state={
+  state = {
     fieldValues: {
       email: '',
       password: ''
@@ -15,7 +15,8 @@ export default class Login extends React.Component {
   handleChange = (e) => {
     e.preventDefault()
     const { id, value } = e.target
-    this.setState(({ fieldValues }) => ({ fieldValues: { ...fieldValues, [id]: value } }))
+    this.setState(({ fieldValues }) =>
+      ({ fieldValues: { ...fieldValues, [id]: value } }))
   }
 
   handleSubmit = (e) => {

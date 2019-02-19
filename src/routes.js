@@ -1,6 +1,6 @@
 import Login from './pages/Login'
 import Signup from './pages/Signup'
-import Authenticated from './pages/Authenticated'
+import Auth from './pages/Auth'
 import Home from './pages/Home'
 import Help from './pages/Help'
 import NotFound from './pages/NotFound'
@@ -19,7 +19,7 @@ export default  [
     exact: true
   },
   {
-    component: Authenticated,
+    component: Auth,
     path: '/',
     key: 'app',
     routes: [

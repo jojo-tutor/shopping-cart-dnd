@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Product from '../components/Product'
 import Cart from '../components/Cart'
+import { db } from '../api/firebase'
 
 const getCartProduct = (cartList, productList) => {
   return cartList.map(cart => ({ ...cart, product: productList.find(product => cart.productId === product.id) }))
@@ -70,10 +71,17 @@ const cartList = [
   }
 ]
 
-class App extends Component {
+class Home extends Component {
   state = {
     cartList,
     productList
+  }
+
+  componentDidMount() {
+    // const products = onceGetDocuments('/products')
+    // console.log('products: ', products);
+    const products = db.ref('/products')
+    console.log('products: ', products);
   }
 
   handleQuantityChange = (quantity, id) => {
@@ -110,4 +118,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;
