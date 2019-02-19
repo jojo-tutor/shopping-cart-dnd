@@ -18,6 +18,7 @@ const Cart = (props) => {
     list
     , className
     , onQuantityChange
+    , onAddCartItem
     , onRemoveCartItem 
   } = props
     
@@ -28,6 +29,7 @@ const Cart = (props) => {
       <CartList
         list={list}
         onQuantityChange={onQuantityChange}
+        onAddCartItem={onAddCartItem}
         onRemoveCartItem={onRemoveCartItem}
       />
       <Total total={getTotal(list)} />
