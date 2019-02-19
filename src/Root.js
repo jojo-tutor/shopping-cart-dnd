@@ -5,6 +5,7 @@ import { hot } from 'react-hot-loader/root'
 import flow from 'lodash/flow'
 import { withAuthentication } from './auth'
 import routes from './routes'
+import 'scss/base.scss'
 
 const Root = () => (
   <BrowserRouter>
