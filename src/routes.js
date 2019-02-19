@@ -1,7 +1,8 @@
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Authenticated from './pages/Authenticated'
-import ShoppingCart from './pages/ShoppingCart'
+import Home from './pages/Home'
+import Help from './pages/Help'
 import NotFound from './pages/NotFound'
 
 export default  [
@@ -23,10 +24,19 @@ export default  [
     key: 'app',
     routes: [
       {
-        component: ShoppingCart,
+        component: Home,
         path: '/',
         exact: true
       },
+      {
+        component: Help,
+        path: '/help',
+        exact: true
+      },
+      {
+        component: NotFound,
+        path: '*'
+      }
     ]
   },
   {

@@ -20,9 +20,11 @@ const renderAuthenticated = (route) => (
   <>
     <div>
       <NavLink to='/'>Home</NavLink>
-      <NavLink to='/todo'>Todos</NavLink>
+      <NavLink to='/help'>Help</NavLink>
     </div>
-    <button onClick={auth.doSignOut}>Signout</button>
+    <button onClick={auth.doSignOut}>
+      Signout
+    </button>
     { renderRoutes(route.routes) }
   </>
 )
