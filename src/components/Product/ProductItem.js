@@ -1,5 +1,6 @@
 import React from 'react'
 import DragSource from '../DnD/DragSource'
+import Image from '../Image'
 
 const ProductItem = (props) => {
   const {
@@ -19,20 +20,21 @@ const ProductItem = (props) => {
   const isDiscounted = Number(compareAtPrice) > Number(price)
 
   return (
-    <DragSource hideHandle dropEffect='copy' dragItem={product}>
+    <DragSource hideHandle dragItem={product}>
       {() => (
         <div className='productCard product_list_item'>
           <div className='productCard_img'>
-            <img
+            <Image
               src={imageSource}
-              alt='product'
+              alt='Product'
             />
 
             <div className='productCard_action'>
-              <img
+              <Image
                 className='icon' 
                 src='images/drag_action.png' 
-                alt=''/>
+                alt='Drag Action'
+              />
               <p className='info'>
                 Drag this item to the cart to purchase
               </p>

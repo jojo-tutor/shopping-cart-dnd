@@ -67,7 +67,6 @@ class Home extends Component {
       <div className="shop row">
         <Product
           className='col-sm-8'
-          productHero='/images/hero.jpg'
           productList={productList}
           onAddCartItem={this.handleAddCartItem}
         />
