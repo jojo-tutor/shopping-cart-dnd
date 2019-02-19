@@ -1,8 +1,7 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const merge = require('webpack-merge')
 const webpack = require('webpack')
-const express = require('express')
 require('dotenv').config({ path: resolvePath('config/.env') })
 
 const configs = {
@@ -13,14 +12,16 @@ const configs = {
     styleLoader: MiniCssExtractPlugin.loader
   }
 }
-const { PORT } = process.env
-module.exports = (mode) => {
-  const { styleLoader } = configs[mode]
-  return {
+
+function baseConfig(options){
+  const { mode } = options
+  const {
+    styleLoader
+  } = configs[mode]
+  return merge(options, {
     entry: [
       './src/index.js'
     ],
-    mode,
     module: {
       rules: [
         {
@@ -32,7 +33,7 @@ module.exports = (mode) => {
             },
             {
               test: /\.css$/,
-              use: getStyleLoaders({ importLoaders: 1,  url: false}, styleLoader),
+              use: getStyleLoaders({ importLoaders: 1, url: false }, styleLoader),
             },
             {
               test: /\.(scss|sass)$/,
@@ -54,28 +55,13 @@ module.exports = (mode) => {
       filename: 'js/[name].js'
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        template: resolvePath('views/index.html'),
-      }),
       new webpack.DefinePlugin(getEnv()),
-      mode === 'development' && new webpack.HotModuleReplacementPlugin(),
-      mode === 'production' &&
-        new MiniCssExtractPlugin({
-          filename: 'css/[name].[contenthash:8].css',
-        }),
-    ].filter(Boolean),
+    ],
     resolve: {
-      modules: ['node_modules', 'src']
+      modules: ['node_modules', 'src'],
+      extensions: ['.mjs', '.js', '.json', '.jsx', '.css', '.scss'],
     },
-    devServer: {
-      open: true,
-      port: PORT,
-      hotOnly: true,
-      before: (app) => {
-        app.use(express.static(resolvePath('public')))
-      }
-    }
-  }
+  })
 }
 
 function getEnv(){
@@ -120,4 +106,9 @@ function getStyleLoaders(cssOptions, mainLoader, preProcessor) {
     },
     preProcessor
   ].filter(Boolean)
-};
+}
+
+module.exports = {
+  baseConfig,
+  resolvePath
+}
