@@ -1,12 +1,13 @@
 import React from 'react'
 import AuthUserContext from './AuthUserContext'
-import { firebase } from '../../firebase'
+import { firebase } from '../api'
 
 export default function withAuthentication(Component) {
   return class WithAuthentication extends React.Component {
     state={
       authUser: null,
     }
+
     componentDidMount() {
       this.authListener = firebase.auth.onAuthStateChanged(authUser => {
         authUser
@@ -14,10 +15,12 @@ export default function withAuthentication(Component) {
           : this.setState(() => ({ authUser: null }));
       })
     }
+
     componentWillUnmount() {
       console.log('@unmounted')
       this.authListener = null
     }
+
     render() {
       const { authUser } = this.state
       return (

@@ -1,7 +1,7 @@
 import React from 'react'
-import FormWrapper from './FormWrapper'
 import { Link } from 'react-router-dom'
-import { auth, db } from '../firebase'
+// import FormWrapper from './FormWrapper'
+import { auth, db } from '../api'
 
 export default class Signup extends React.Component {
   state={
@@ -43,22 +43,24 @@ export default class Signup extends React.Component {
     return (
       <div>
         <p>Signup</p>
-        <FormWrapper
-          fields={this.fields.map(e => e.name)}
-          onSubmit={this.onSignup}
-          render={({ formState: { formFields, formErrors }, handlers }) => (
-            <>
-              {this.fields.map(({ name, ...restProps }) => (
-                <div key={name}>
-                  <input name={name} value={formFields[name]} {...restProps} onChange={handlers.onChange}/>
-                  { formErrors[name] && <p style={{ color: 'red' }}>{formErrors[name]}</p>}
-                </div>
-              ))}
-              {error && <p style={{ color: 'red' }}>{error}</p>}
-              <button onClick={handlers.onSubmit} disabled={requesting}>{ requesting ? 'Signing up...' : 'Signup'}</button>
-            </>
-          )}
-        />
+        {
+          // <FormWrapper
+          //   fields={this.fields.map(e => e.name)}
+          //   onSubmit={this.onSignup}
+          //   render={({ formState: { formFields, formErrors }, handlers }) => (
+          //     <>
+          //       {this.fields.map(({ name, ...restProps }) => (
+          //         <div key={name}>
+          //           <input name={name} value={formFields[name]} {...restProps} onChange={handlers.onChange}/>
+          //           { formErrors[name] && <p style={{ color: 'red' }}>{formErrors[name]}</p>}
+          //         </div>
+          //       ))}
+          //       {error && <p style={{ color: 'red' }}>{error}</p>}
+          //       <button onClick={handlers.onSubmit} disabled={requesting}>{ requesting ? 'Signing up...' : 'Signup'}</button>
+          //     </>
+          //   )}
+          // />
+        }
         <p>
           <Link to='/login'>Already have an account</Link>
         </p>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Product from './components/Product'
-import Cart from './components/Cart'
+import Product from '../components/Product'
+import Cart from '../components/Cart'
 
 
 const getCartProduct = (cartList, productList) => {
