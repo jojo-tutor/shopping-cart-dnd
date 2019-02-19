@@ -1,9 +1,21 @@
 import React from 'react'
 
 const ProductItem = (props) => {
-  const { title, description, originalPrice, sellPrice, imageSource } = props.product
+  const {
+    product
+    , onAddCartItem
+  } = props
 
-  const isDiscounted = originalPrice > sellPrice
+  const {
+    id
+    , title
+    , price
+    , description
+    , imageSource
+    , compareAtPrice
+  } = product
+
+  const isDiscounted = Number(compareAtPrice) > Number(price)
 
   return (
     <div className='productCard product_list_item'>
@@ -45,17 +57,17 @@ const ProductItem = (props) => {
           <div className='prices'>
 
             <div className='original'>
-              ${ originalPrice }
+              ${ compareAtPrice }
             </div>
 
             { isDiscounted && (
               <div className='sale'>
-                ${ sellPrice }
+                ${ price }
               </div>
             )}
           </div>
 
-          <button className='productCard_buynow'>
+          <button className='productCard_buynow' onClick={() => onAddCartItem(id)}>
             <i className='wtfs wtf-shopping-cart'></i>
           </button>
         </div>
