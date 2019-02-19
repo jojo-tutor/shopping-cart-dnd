@@ -1,0 +1,40 @@
+.btn {
+	display: inline-block;
+	padding: .75em 2em;
+	font-size: 1em;
+	text-decoration: none !important;
+	line-height: 1;
+	cursor: pointer;
+	border: none;
+	outline: none !important;
+	border-radius: 2em;
+
+	font-weight: 600;
+
+	transition: 
+		color 300ms ease-in-out ,
+		border-color 300ms ease-in-out ,
+		background-color 300ms ease-in-out ;
+
+	@each $name,$value in $button-colors {
+
+		&-#{$name} {
+			background-color: $value;
+			color: determine-text-color($value);
+			&:hover {
+				color: determine-text-color($value);
+				background-color: darken($value,10);
+			}
+		}
+
+		&-inverted-#{$name} {
+			background-color: transparent;
+			color: $value;
+			border: .15em solid $value;
+			&:hover {
+				color: determine-text-color($value);
+				background-color: darken($value,10);
+			}
+		}
+	}
+}

@@ -7,43 +7,46 @@ const CartItem = (props) => {
   const total = Number(quantity) * Number(sellPrice)
 
   return (
-    <div className="cartItem">
-      <div className="section1">
-        <img
-          src={imageSource}
-          alt="product"
-          className='product'
-        />
-        <div className="title">
-          { title }
-        </div>
-        <div className="description">
-          { description }
-        </div>
-        <div className="quantity">
-          <input
-            type='number'
-            min={0}
-            value={quantity}
-            onChange={(e) => onQuantityChange(e.target.value, id)}
+    <div className="cart_item">
+
+      <div className="row row_main">
+        <div className="cart_item_graphic">
+          <img
+            src={imageSource}
+            alt="product"
           />
         </div>
-      </div>
-      <div className="section2">
-        <div className="label">
-          total:
+
+        <div className="cart_item_content">
+          <h1 className="title">{ title }</h1>
+          <div className="quantity">
+            <label>
+              Qty
+              <input
+                type='number'
+                min={0}
+                value={quantity}
+                onChange={(e) => onQuantityChange(e.target.value, id)}
+              />
+            </label>
+          </div>
         </div>
-        <div className="total">
-          { total }
+
+        <div className="cart_item_total">
+          <span className="label">total :</span>
+          <h1 className="total">${ total }</h1>
         </div>
       </div>
-      <div className="removeItem">
-        <input
-          type='button'
-          value='Delete'
+
+      <div className="row row_actions">
+        <button 
           onClick={onRemoveCartItem}
-        />
+          className="cart_item_remove">
+          remove item
+        </button> 
       </div>
+ 
+
     </div>
   )
 }
