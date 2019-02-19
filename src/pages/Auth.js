@@ -4,6 +4,13 @@ import { NavLink, Link } from 'react-router-dom'
 import { AuthUserContext } from '../auth'
 import { auth } from '../api'
 
+const Navigation = () => (
+  <div>
+    <NavLink to='/'>Home</NavLink>
+    <NavLink to='/help'>Help</NavLink>
+  </div>
+)
+
 const renderLogin = () => (
   <div>
     <p>Log in and explore</p>
@@ -18,10 +25,7 @@ const renderLogin = () => (
 
 const renderAuthenticated = (route) => (
   <>
-    <div>
-      <NavLink to='/'>Home</NavLink>
-      <NavLink to='/help'>Help</NavLink>
-    </div>
+    <Navigation />
     <button onClick={auth.doSignOut}>
       Signout
     </button>
@@ -29,7 +33,7 @@ const renderAuthenticated = (route) => (
   </>
 )
 
-const Authenticated = ({ route }) => {
+const Auth = ({ route }) => {
   return(
     <AuthUserContext.Consumer>
       {user => user ? renderAuthenticated(route) : renderLogin()}
@@ -37,4 +41,4 @@ const Authenticated = ({ route }) => {
   )
 }
 
-export default Authenticated
+export default Auth
