@@ -17,9 +17,10 @@ const result = baseConfig({
     port: process.env.PORT,
     hotOnly: true,
     overlay: true,
-    historyApiFallback: {
-      disableDotRule: true
-    },
+    // historyApiFallback: {
+    //   disableDotRule: true
+    // },
+    historyApiFallback: true,
     before(app){
       app.use(express.static(resolvePath('public')))
     }

@@ -5,10 +5,33 @@ import { AuthUserContext } from '../auth'
 import { auth } from '../api'
 
 const Navigation = () => (
-  <div>
-    <NavLink to='/'>Home</NavLink>
-    <NavLink to='/help'>Help</NavLink>
-  </div>
+  <nav className='nav'>
+    <NavLink 
+      className='nav_logo'
+      activeClassName='active'
+      to='/'>
+      <img src="/images/logo.png" alt=""/>
+    </NavLink>
+    <div className='nav_links'>
+      <NavLink 
+        to='/' 
+        className='nav_link'
+        activeClassName='active'>
+        Home
+      </NavLink>
+      <NavLink 
+        to='/todo' 
+        className='nav_link'
+        activeClassName='active'>
+        Todos
+      </NavLink>
+      <button
+        className='btn btn-inverted-red nav_logout' 
+        onClick={() => doSignout() }>
+        Signout
+      </button>
+    </div>
+  </nav>
 )
 
 const renderLogin = () => (
