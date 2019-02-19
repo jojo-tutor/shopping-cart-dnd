@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import uuidv1 from 'uuid/v1'
 import Product from '../components/Product'
 import Cart from '../components/Cart'
+import withDragDropContext from '../components/DnD/withDragDropContext'
 import { onceGetDocuments } from '../api/db'
 
 const getCartProduct = (cartList, productList) => {
@@ -41,7 +42,7 @@ class Home extends Component {
         return {
           cartList: cartList.map(cartItem => {
             if (cartItem.productId === productId) {
-              cartItem.quantity += 1
+              return { ...cartItem, quantity: Number(cartItem.quantity) + 1 }
             }
             return cartItem
           })
@@ -75,6 +76,7 @@ class Home extends Component {
           className='col-sm-4'
           list={getCartProduct(cartList, productList)}
           onQuantityChange={this.handleQuantityChange}
+          onAddCartItem={this.handleAddCartItem}
           onRemoveCartItem={this.handleRemoveCartItem}
         />
       </div>
@@ -82,4 +84,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withDragDropContext(Home)
