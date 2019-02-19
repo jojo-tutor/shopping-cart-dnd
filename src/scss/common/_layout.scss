@@ -1,0 +1,23 @@
+* ,
+*:before ,
+*:after {
+	box-sizing: border-box;
+}
+
+
+*::selection {
+	background-color: $tertiary-color;
+	color: $white;
+}
+
+body {
+	margin: 0;
+	color: $text-color;
+	overflow-x: hidden;
+	width: 100%;
+}
+
+.appContainer {
+	padding-top: $nav-height;
+}
+

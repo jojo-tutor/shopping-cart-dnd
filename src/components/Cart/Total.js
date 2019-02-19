@@ -5,12 +5,12 @@ const Total = (props) => {
   const { total } = props
 
   return (
-    <div className="total">
+    <div className="cart_grandtotal">
       <h3 className="label">
         Total
       </h3>
       <h2 className="value">
-        { total }
+        ${ total }
       </h2>
     </div>
   )

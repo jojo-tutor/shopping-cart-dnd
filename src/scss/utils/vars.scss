@@ -1,0 +1,91 @@
+// ========================
+// THEME COLORS
+// ========================
+$primary-color: #5168FF;
+$secondary-color: #FED643;
+$tertiary-color: #F47C96;
+
+
+$black: #1A1A1A;
+$white: #FFF;
+
+$gray: #A8A8A8;
+$lightgray: #dedede;
+
+$red: #FF4444;
+$yellow: #FFD544;
+$green: #5BFB2A;
+$teal: #1FC8B6;
+$blue: #0060FF;
+$purple: #902BEE;
+$jade: #008B98;
+
+// ========================
+// SYSTEM COLORS
+// ========================
+$text-color: #1C275B;
+$text-color-light: #7880AB;
+$text-color-white: $white;
+
+
+$text-colors : (
+	primary: $primary-color,
+	secondary: $secondary-color,
+	tertiary: $tertiary-color,
+	red: $red,
+	yellow: $yellow,
+	green: $green,
+	teal: $teal,
+	blue: #3C98CC,
+	purple: $purple,
+	black: $black,
+	white: $white,
+);
+
+$button-colors : (
+	primary: $primary-color,
+	secondary: $secondary-color,
+	tertiary: $tertiary-color,
+	red: $red,
+	yellow: $yellow,
+	green: $green,
+	teal: $teal,
+	blue: #3C98CC,
+	purple: $purple,
+	black: $black,
+	white: $white,
+);
+
+
+// ========================
+// GRID
+// ========================
+$container-width: 1366px;
+$grid-columns: 12;
+$grid-screens: (
+	sm : 512px,
+	md : 1024px,
+	lg : 1280px,
+	xl : 1446px
+);
+
+
+$base-font-size: 16px;
+$font-family: gotham;
+
+
+// ========================
+// NAVIGATION
+// ========================
+$nav-height: 5em;
+
+
+// ========================
+// CART
+// ========================
+$cart-bg: #F1F4F8;
+
+// ========================
+// PRODUCT
+// ========================
+$prod-buywnow-bg: #F1F4F8;
