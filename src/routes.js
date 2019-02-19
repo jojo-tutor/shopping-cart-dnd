@@ -26,6 +26,7 @@ export default  [
       {
         component: Home,
         path: '/',
+        key: 'home',
         exact: true
       },
       {
