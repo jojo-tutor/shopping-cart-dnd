@@ -6,7 +6,7 @@ const Counter = (props) => {
 
   return (
     <div className="cart_counter">
-      <i class="wtfs wtf-shopping-cart cart_counter_icon"></i>
+      <i className="wtfs wtf-shopping-cart cart_counter_icon"></i>
       <h2 className="cart_counter_label">
         <span className='label'>Cart</span>
         <span className='count'>

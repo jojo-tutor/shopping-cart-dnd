@@ -2,7 +2,6 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
 
-console.log('process.env', process.env)
 const config = {
   apiKey: process.env.FIREBASE_KEY,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -12,7 +11,7 @@ const config = {
   messagingSenderId: process.env.FIREBASE_SENDER_ID
 }
 
-firebase.initializeApp(config);
+firebase.initializeApp(config)
 
-export const db = firebase.database();
-export const auth = firebase.auth();
+export const db = firebase.database()
+export const auth = firebase.auth()
