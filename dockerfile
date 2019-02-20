@@ -1,7 +1,7 @@
 FROM node:10.15-alpine as builder
 WORKDIR /var/app
 COPY ./package.json  /var/app/package.json
-RUN npm install
+RUN npm install --silent
 ENV NODE_ENV production
 COPY ./ /var/app/
 RUN npm run build --silent
@@ -14,7 +14,7 @@ RUN ls -al
 FROM node:10.15-alpine as runner
 ENV PORT 8080
 ENV NODE_ENV production
-RUN npm install -g pm2
+RUN npm install -g --silent pm2 
 WORKDIR /var/app
 COPY ./package.json  /var/app/
 RUN npm install --production --silent
