@@ -4,7 +4,7 @@ import Image from '../Image'
 const CartItem = (props) => {
   const { item, onQuantityChange, onRemoveCartItem } = props
   const { id, quantity, product } = item
-  const { title, description, price, imageSource } = product || {}
+  const { title, description, price, imageSource, vendor } = product || {}
   const total = (Number(quantity) * Number(price)).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
 
   return (
@@ -20,6 +20,7 @@ const CartItem = (props) => {
 
         <div className="cart_item_content">
           <h1 className="title">{ title }</h1>
+          <p className="vendor">{ vendor }</p>
           <div className="quantity">
             <label>
               Qty

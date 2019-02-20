@@ -33,9 +33,18 @@ $graphic-size: 5em;
 		.title {
 			margin-top: 0;
 			margin-bottom: .25em;
-			font-size: 1em;
+			font-size: 1.15em;
 			line-height: 1;
-			font-weight: 700;
+			font-weight: 600;
+		}
+
+		.vendor {
+			font-size: .8em;
+			font-weight: 600;
+			color: $tertiary-color;
+			margin-top: 0;
+			margin-bottom: .5em;
+			text-transform: uppercase;
 		}
 
 
