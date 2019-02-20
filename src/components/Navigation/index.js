@@ -1,10 +1,28 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import Image from '../components/Image'
-import { auth } from '../api'
+import Image from '../Image'
+import NavigationList from './NavigationList'
 
-const Navigation = ({ location }) => {
+const navigationList = [
+  {
+    value: '/',
+    label: 'Home'
+  },
+  {
+    value: '/help',
+    label: 'Help'
+  }
+]
+
+const Navigation = (props) => {
+  const {
+    user
+    , signOut
+    , location
+  } = props
+
   const isLinkActive = (pathname) => () => pathname === location.pathname
+
   return (
     <nav className='nav'>
       <NavLink
@@ -16,26 +34,17 @@ const Navigation = ({ location }) => {
           alt="Logo"
         />
       </NavLink>
+      <div className="session_email">
+        { user.email }
+      </div>
       <div className='nav_links'>
-        <NavLink
-          to='/'
-          className='nav_link'
-          activeClassName='active'
-          isActive={isLinkActive('/')}
-        >
-          Home
-        </NavLink>
-        <NavLink
-          to='/help'
-          className='nav_link'
-          activeClassName='active'
-          isActive={isLinkActive('/help')}
-        >
-          Help
-        </NavLink>
+        <NavigationList
+          navigations={navigationList}
+          isLinkActive={isLinkActive}
+        />
         <button
           className='btn btn-inverted-red nav_logout'
-          onClick={auth.doSignOut}>
+          onClick={signOut}>
           Signout
         </button>
       </div>
