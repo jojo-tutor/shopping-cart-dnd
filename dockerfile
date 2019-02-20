@@ -14,7 +14,7 @@ RUN ls -al
 FROM node:10.15-alpine as runner
 ENV PORT 8080
 ENV NODE_ENV production
-RUN npm install -g --silent pm2 
+RUN npm install -g --silent pm2
 WORKDIR /var/app
 COPY ./package.json  /var/app/
 RUN npm install --production --silent
