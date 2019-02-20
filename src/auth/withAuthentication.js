@@ -1,5 +1,6 @@
 import React from 'react'
 import AuthUserContext from './AuthUserContext'
+import PageLoader from '../components/PageLoader'
 import { firebase } from '../api'
 
 export default function withAuthentication(Component) {
@@ -24,15 +25,8 @@ export default function withAuthentication(Component) {
     }
 
     render() {
-
       if (!this.authListener) {
-        return ( 
-          <div className="page_loader">
-            <div className="loader">
-              <hr/><hr/><hr/><hr/>
-            </div>
-          </div> 
-        )
+        return <PageLoader />
       }
 
       const { session } = this.state
