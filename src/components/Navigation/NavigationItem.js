@@ -14,17 +14,14 @@ const NavigationItem = (props) => {
   } = navigation
 
   return (
-    <div className='navigation_item'>
-      <NavLink
-        key={value}
-        to={value}
-        className='nav_link'
-        activeClassName='active'
-        isActive={isLinkActive(value)}
-      >
-        { label }
-      </NavLink>
-    </div>
+    <NavLink
+      key={value}
+      to={value}
+      className='nav_link'
+      activeClassName='active'
+      isActive={isLinkActive(value)}>
+      { label }
+    </NavLink>
   )
 }
 

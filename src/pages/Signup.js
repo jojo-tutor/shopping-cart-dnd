@@ -31,6 +31,9 @@ export default class Signup extends React.Component {
     const { requesting, error } = this.state
     return (
       <div className='auth'>
+        <div className="auth_logo">
+          <img src="/images/logo.png" alt=""/>
+        </div>
         <div className='auth_paper'>
 
           { error && (
