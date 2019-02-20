@@ -7,9 +7,9 @@ import { withAuthentication } from './auth'
 import routes from './routes'
 import 'scss/base.scss'
 
-const Root = () => (
+const Root = ({ session, registerUserSession }) => (
   <BrowserRouter>
-    {renderRoutes(routes)}
+    {renderRoutes(routes, { session, registerUserSession })}
   </BrowserRouter>
 )
 

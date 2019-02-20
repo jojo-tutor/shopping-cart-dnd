@@ -5,17 +5,22 @@ import { firebase } from '../api'
 export default function withAuthentication(Component) {
   return class WithAuthentication extends React.Component {
     state = {
-      authUser: null
+      session: null
     }
 
     componentDidMount() {
-      this.authListener = firebase.auth.onAuthStateChanged(authUser => {
-        this.setState({ authUser: authUser || null })
+      this.authListener = firebase.auth.onAuthStateChanged(session => {
+        this.setState({ session: session || null })
       })
     }
 
     componentWillUnmount() {
       this.authListener = null
+    }
+
+    registerUserSession = (session) => {
+      this.authListener = session
+      this.setState({ session })
     }
 
     render() {
@@ -24,11 +29,16 @@ export default function withAuthentication(Component) {
         return <div className="loader">Loading...</div>
       }
 
-      const { authUser } = this.state
+      const { session } = this.state
+      const childProps = {
+        ...this.props,
+        session,
+        registerUserSession: this.registerUserSession
+      }
 
       return (
-        <AuthUserContext.Provider value={authUser}>
-          <Component {...this.props} />
+        <AuthUserContext.Provider value={session}>
+          <Component {...childProps} />
         </AuthUserContext.Provider>
       )
     }

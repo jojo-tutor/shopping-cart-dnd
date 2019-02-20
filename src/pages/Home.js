@@ -4,6 +4,7 @@ import Product from '../components/Product'
 import Cart from '../components/Cart'
 import withDragDropContext from '../components/DnD/withDragDropContext'
 import { onceGetDocuments } from '../api/db'
+import { makeCancelable } from '../utils/tools'
 
 const getCartProduct = (cartList, productList) => {
   return cartList.map(cart => ({ ...cart, product: productList.find(product => cart.productId === product.id) }))
@@ -16,10 +17,18 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    onceGetDocuments('/products').then((products) => {
-      const productList = Object.entries(products).reduce((acc, [key, value]) => ([...acc, value]), [])
-      this.setState({ productList })
-    })
+    this.productListener = makeCancelable( onceGetDocuments('/products'));
+    this.productListener
+      .promise
+      .then((products) => {
+        const productList = Object.entries(products).reduce((acc, [key, value]) => ([...acc, value]), [])
+        this.setState({ productList })
+      })
+      .catch(({isCanceled, ...error}) => console.log('isCanceled', isCanceled));
+  }
+
+  componentWillUnmount() {
+    this.productListener.cancel()
   }
 
   handleQuantityChange = (quantity, id) => {

@@ -1,21 +1,12 @@
 import React from 'react'
 import { renderRoutes } from 'react-router-config'
+import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 import Navigation from '../components/Navigation/index'
 import { AuthUserContext } from '../auth'
 import { auth } from '../api'
 
-const renderLogin = () => (
-  <div>
-    <p>Log in and explore</p>
-    <div>
-      <Link to='/login'>Login</Link>
-    </div>
-    <div>
-      <Link to='/signup'>Signup</Link>
-    </div>
-  </div>
-)
+const renderLogin = () => <Redirect to='/login' />
 
 const renderAuthenticated = ({ route, location, session }) => (
   <>

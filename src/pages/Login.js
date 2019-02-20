@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 import { auth } from '../api'
@@ -30,8 +31,10 @@ export default class Login extends React.Component {
 
   doLogin = ({ email, password }) => {
     auth.doSignInWithEmailAndPassword(email, password)
-      .then(() => {
-        this.props.history.push('/')
+      .then(({ user }) => {
+        const { registerUserSession, history } = this.props
+        registerUserSession(user)
+        history.push('/')
       })
       .catch(({ message: error }) => {
         this.setState({ error, isProcessing: false })
@@ -40,10 +43,18 @@ export default class Login extends React.Component {
 
   render(){
     const {
+      session
+    } = this.props
+
+    const {
       fieldValues
       , isProcessing
       , error
     } = this.state
+
+    if (session) {
+      return <Redirect to='/' />
+    }
 
     return (
       <div className={cn('auth',{'auth-processing': isProcessing }) }>
@@ -57,7 +68,7 @@ export default class Login extends React.Component {
 
           { isProcessing && (
             <div className='auth_progressLoader'>
-              <div class="loader">
+              <div className="loader">
                 <hr/><hr/><hr/><hr/>
               </div>
               <h1>authenticating</h1>
