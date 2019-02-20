@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 import { auth } from '../api'
+import cn from 'classnames'
 import 'scss/auth/index.scss'
 
 export default class Login extends React.Component {
@@ -23,9 +24,9 @@ export default class Login extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setState({ isProcessing: true }, () => {
+    this.setState({ isProcessing: true }, () => setTimeout(() => {
       this.doLogin(this.state.fieldValues)
-    })
+    }, 1000))
   }
 
   doLogin = ({ email, password }) => {
@@ -46,8 +47,24 @@ export default class Login extends React.Component {
     } = this.state
 
     return (
-      <div className='auth'>
+      <div className={cn('auth',{'auth-processing': isProcessing }) }>
         <div className='auth_paper'>
+
+          { error && (
+            <div className="auth_error">
+              <p>{ error }</p>
+            </div>
+          )}
+
+          { isProcessing && (
+            <div className='auth_progressLoader'>
+              <div class="loader">
+                <hr/><hr/><hr/><hr/>
+              </div>
+              <h1>authenticating</h1>
+            </div>
+          )}
+
           <h1 className='auth_header'>
             Login
           </h1>
@@ -83,6 +100,7 @@ export default class Login extends React.Component {
               className={cn('btn btn-primary', { processing: isProcessing })}
             />
           </form>
+
           <p className='auth_extras'>
             <Link
               to='/signup'
