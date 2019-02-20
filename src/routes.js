@@ -2,7 +2,7 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Auth from './pages/Auth'
 import Home from './pages/Home'
-import Help from './pages/Help'
+import About from './pages/About'
 import NotFound from './pages/NotFound'
 
 export default  [
@@ -30,8 +30,8 @@ export default  [
         exact: true
       },
       {
-        component: Help,
-        path: '/help',
+        component: About,
+        path: '/about',
         exact: true
       },
       {

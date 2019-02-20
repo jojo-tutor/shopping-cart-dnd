@@ -1,30 +1,27 @@
 import React from 'react'
 import { renderRoutes } from 'react-router-config'
-import Navigation from '../components/Navigation'
+import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
+import Navigation from '../components/Navigation/index'
 import { AuthUserContext } from '../auth'
+import { auth } from '../api'
 
-const renderLogin = () => (
-  <div>
-    <p>Log in and explore</p>
-    <div>
-      <Link to='/login'>Login</Link>
-    </div>
-    <div>
-      <Link to='/signup'>Signup</Link>
-    </div>
-  </div>
-)
+const renderLogin = () => <Redirect to='/login' />
 
-const renderAuthenticated = ({ route, location }) => (
+const renderAuthenticated = ({ route, location, session }) => (
   <>
-    <Navigation location={location} />
+    <Navigation
+      session={session}
+      location={location}
+      signOut={auth.doSignOut}
+    />
     {renderRoutes(route.routes)}
   </>
 )
 
 const Auth = (props) => (
   <AuthUserContext.Consumer>
-    {user => user ? renderAuthenticated(props) : renderLogin()}
+    {session => session ? renderAuthenticated({ ...props, session }) : renderLogin()}
   </AuthUserContext.Consumer>
 )
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import DragSource from '../DnD/DragSource'
 import Image from '../Image'
+import { formatCurrency } from '../../utils/tools'
 
 const ProductItem = (props) => {
   const {
@@ -15,6 +16,7 @@ const ProductItem = (props) => {
     , description
     , imageSource
     , compareAtPrice
+    , vendor
   } = product
 
   const isDiscounted = Number(compareAtPrice) > Number(price)
@@ -52,8 +54,8 @@ const ProductItem = (props) => {
             <h1 className='title'>
                 { title }
             </h1>
-            <p className='desc'>
-              { description }
+            <p className='vendor'>
+              { vendor }
             </p>
 
 
@@ -61,12 +63,12 @@ const ProductItem = (props) => {
               <div className='prices'>
 
                 <div className='original'>
-                  ${ compareAtPrice }
+                  { formatCurrency(compareAtPrice) }
                 </div>
 
                 { isDiscounted && (
                   <div className='sale'>
-                    ${ price }
+                    { formatCurrency(price) }
                   </div>
                 )}
               </div>

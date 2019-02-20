@@ -19,26 +19,18 @@ const collect = (connect, monitor) => ({
   isOver: monitor.isOver(),
   isOverCurrent: monitor.isOver({ shallow: true }),
   canDrop: monitor.canDrop(),
-  itemType: monitor.getItemType()
+  itemType: monitor.getItemType(),
+  sourceItem: monitor.getItem()
 })
 
 const DndTarget = (props) => {
   // own props
-  const { position, children, ...restProps } = props
+  const { children, ...restProps } = props
 
   // injected props
-  const { isOverCurrent, canDrop, connectDropTarget } = restProps
-  const style = {}
+  const { connectDropTarget } = restProps
 
-  if (isOverCurrent) {
-    Object.assign(style, {
-      borderColor: 'green',
-      borderWidth: '1px',
-      borderStyle: 'solid'
-    })
-  }
-
-  return connectDropTarget(children({ ...restProps, style }))
+  return connectDropTarget(children(restProps))
 }
 
 export default DropTarget(Types.PRODUCT_TO_CART, target, collect)(DndTarget)
