@@ -1,6 +1,6 @@
 .cart_item {
 	position: relative;
-	padding: .25em;
+	padding: .5em 1em;
 
 	&:nth-child(even) {
 		background-color: rgba(#000,.025);
@@ -105,5 +105,8 @@
 
 	.row_actions {
 		justify-content: flex-end;
+		position: absolute;
+		right: 0;
+		bottom: .5em;
 	}
 }
