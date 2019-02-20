@@ -5,7 +5,7 @@ const QuickTip = (props) => {
   return (
     <div className='cart_quicktip'>
       <div className='icon'>
-        <Image
+        <img
           src='images/drag_icon.png'
           alt='Drag Icon'
         />

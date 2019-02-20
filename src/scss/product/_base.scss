@@ -13,14 +13,10 @@
 	// .product_list
 	&_list {
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 		grid-template-rows: auto;
 		grid-gap: 1em;
 		padding: 1em;
-
-		@media (max-width: 1663px) {
-			grid-template-columns: 1fr 1fr 1fr;
-		}
 
 		// .product_list_header
 		&_header {
