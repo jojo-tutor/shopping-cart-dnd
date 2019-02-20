@@ -30,6 +30,10 @@ const Product = (props) => {
   )
 }
 
+Product.defaultProps = {
+  className: 'col col-md-9 col-sm-8'
+}
+
 Product.propTypes = {
   className: PropTypes.string,
   onAddCartItem: PropTypes.func.isRequired,

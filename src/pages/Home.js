@@ -76,13 +76,11 @@ class Home extends PureComponent {
     return (
       <div className='page shop row'>
         <Product
-          className='col col-md-9 col-sm-8'
           productList={productList}
           onAddCartItem={this.handleAddCartItem}
         />
 
         <Cart
-          className='col col-md-3 col-sm-4'
           cartList={this.getCartProduct(cartList, productList)}
           onQuantityChange={this.handleQuantityChange}
           onAddCartItem={this.handleAddCartItem}

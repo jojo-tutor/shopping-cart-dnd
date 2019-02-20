@@ -59,6 +59,10 @@ const Cart = (props) => {
   )
 }
 
+Cart.defaultProps = {
+  className: 'col col-md-3 col-sm-4'
+}
+
 Cart.propTypes = {
   className: PropTypes.string,
   cartList: PropTypes.arrayOf(PropTypes.object).isRequired
