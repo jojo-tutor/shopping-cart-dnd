@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types' 
 import Image from '../Image'
 
 const Button = ({ label }) => (
@@ -8,5 +9,9 @@ const Button = ({ label }) => (
     value={label}
   />
 )
+
+Button.propTypes = {
+  label: PropTypes.string.isRequired
+}
 
 export default Button

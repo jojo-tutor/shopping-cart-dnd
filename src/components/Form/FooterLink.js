@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types' 
 import { Link } from 'react-router-dom'
 import Image from '../Image'
 
-const Button = ({ to, label }) => (
+const FooterLink = ({ to, label }) => (
   <div className='auth_extras'>
     <Link to={to} className='noAccount'>
       {label}
@@ -10,4 +11,9 @@ const Button = ({ to, label }) => (
   </div>
 )
 
-export default Button
+FooterLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired
+}
+
+export default FooterLink
