@@ -4,31 +4,46 @@ import { auth, db } from '../api'
 import 'scss/auth/index.scss'
 
 export default class Signup extends React.Component {
-  state={
-    requesting: false,
-    error: ''
+  state = {
+    error: '',
+    isProcessing: false,
+    fieldValues: {
+      email: '',
+      password: '',
+      confirmPassword: ''
+    }
   }
 
-  signUpCallback = async(data) => {
+  handleChange = (e) => {
+    e.preventDefault()
+    const { id, value } = e.target
+    this.setState(({ fieldValues }) =>
+      ({ fieldValues: { ...fieldValues, [id]: value } }))
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.setState({ isProcessing: true }, () => {
+      this.doSignup(this.state.fieldValues)
+    })
+  }
+
+  doSignup = async (data) => {
     try {
       const { email, password } = data
-      const { user: { uid : id } } = await auth.doCreateUserWithEmailAndPassword({ email, password })
-      await db.createDocument('user', { ...data, id })
+      const { user } = await auth.doCreateUserWithEmailAndPassword({ email, password })
+      await db.createDocument('users', { ...data, id: user.uuid })
       this.props.history.push('/')
     } catch({ message: error }) {
       this.setState({
-        requesting: false,
-        error
+        error,
+        isProcessing: false
       })
     }
   }
 
-  onSignup = (data) => {
-    this.setState({ requesting: true }, this.signUpCallback.bind(this, data))
-  }
-
   render() {
-    const { requesting, error } = this.state
+    const { fieldValues, isProcessing, error } = this.state
     return (
       <div className='auth'>
         <div className="auth_logo">
@@ -44,7 +59,7 @@ export default class Signup extends React.Component {
 
           { isProcessing && (
             <div className='auth_progressLoader'>
-              <div class="loader">
+              <div className="loader">
                 <hr/><hr/><hr/><hr/>
               </div>
               <h1>authenticating</h1>
@@ -64,6 +79,8 @@ export default class Signup extends React.Component {
                 id='email'
                 type='email'
                 name='email'
+                value={fieldValues.email}
+                onChange={this.handleChange}
               />
             </div>
             <div className='field'>
@@ -73,6 +90,8 @@ export default class Signup extends React.Component {
                 id='password'
                 type='password'
                 name='password'
+                value={fieldValues.password}
+                onChange={this.handleChange}
               />
             </div>
             <div className='field'>
@@ -82,6 +101,8 @@ export default class Signup extends React.Component {
                 id='confirmPassword'
                 type='password'
                 name='confirmPassword'
+                value={fieldValues.confirmPassword}
+                onChange={this.handleChange}
               />
             </div>
             <input
