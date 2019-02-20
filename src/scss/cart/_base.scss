@@ -23,7 +23,9 @@
 
 	// .cart_list
 	&_list {
-		height: 100%;
+		display: block;
+		width: 100%;
+		height: auto;
 		overflow-y: auto;
 		overflow-x: hidden;
 	}
@@ -34,6 +36,8 @@
 		overflow-y: auto;
 		overflow-x: hidden;
 		position: relative;
+		display: flex;
+		align-items: stretch;
 	}
 
 	// .cart_purchaseIndicator
