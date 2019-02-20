@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types' 
 import ProductItem from './ProductItem'
 
 const ProductList = (props) => {
@@ -18,6 +19,11 @@ const ProductList = (props) => {
       ))}
     </div>
   )
+}
+
+PropTypes.propTypes = {
+  onAddCartItem: PropTypes.func.isRequired,
+  products: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default ProductList
