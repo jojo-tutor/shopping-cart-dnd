@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
 import { auth } from '../api'
-import cn from 'classnames'
 import 'scss/auth/index.scss'
 
 export default class Login extends React.Component {
