@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types' 
 import Image from '../Image'
 
 const Logo = ({ src, alt }) => (
@@ -10,6 +11,11 @@ const Logo = ({ src, alt }) => (
 Logo.defaultProps = {
   src: '/images/logo.png',
   alt: 'Branding Logo'
+}
+
+Logo.propTypes = {
+  src: PropTypes.string,
+  alt: PropTypes.string
 }
 
 export default Logo

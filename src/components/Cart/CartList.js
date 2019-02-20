@@ -1,13 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import CartItem from './CartItem'
 import DropTarget from '../DnD/DropTarget'
 import cn from 'classnames'
 
-const renderDropProductPreview = (product) => (
+const renderDropProductPreview = ({ title }) => (
   <div className='cart_purchaseIndicator'>
     add 
     <div className='item'>
-      { product.title }
+      { title }
     </div>
     to cart
   </div>
@@ -16,9 +17,8 @@ const renderDropProductPreview = (product) => (
 const CartList = (props) => {
   const {
     carts
-    , onQuantityChange
     , onAddCartItem
-    , onRemoveCartItem
+    , ...restProps
   } = props
 
   return (
@@ -30,14 +30,18 @@ const CartList = (props) => {
             <CartItem
               key={cart.id}
               cart={cart}
-              onQuantityChange={onQuantityChange}
-              onRemoveCartItem={onRemoveCartItem}
+              {...restProps}
             />
           ))}
         </div>
       )}
     </DropTarget>
   )
+}
+
+CartList.propTypes = {
+  carts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onAddCartItem: PropTypes.func.isRequired
 }
 
 export default CartList

@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { findDOMNode } from 'react-dom'
+import PropTypes from 'prop-types'
 import { DropTarget } from 'react-dnd'
 import Types from './Types'
 
@@ -31,6 +31,11 @@ const DndTarget = (props) => {
   const { connectDropTarget } = restProps
 
   return connectDropTarget(children(restProps))
+}
+
+DndTarget.propTypes = {
+  children: PropTypes.func.isRequired,
+  onDrop: PropTypes.func.isRequired
 }
 
 export default DropTarget(Types.PRODUCT_TO_CART, target, collect)(DndTarget)

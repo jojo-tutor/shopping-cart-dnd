@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import cn from 'classnames'
 import Counter from './Counter'
 import QuickTip from './QuickTip'
@@ -16,7 +17,7 @@ const numberFormat = {
   }
 }
 
-const getTotal = (list) => {
+const getTotalPrice = (list) => {
   const total = list.reduce((acc, curr) => {
     const { quantity, product = {} } = curr
     return acc + (Number(quantity) * Number(product.price))
@@ -25,7 +26,7 @@ const getTotal = (list) => {
   return formatCurrency(total)
 }
 
-const getItems = (list) => {
+const getTotalCount = (list) => {
   return list.reduce((acc, curr) => {
     const { quantity, product = {} } = curr
     return acc + Number(quantity)
@@ -43,7 +44,7 @@ const Cart = (props) => {
     
   return (
     <div className={cn('cart', className)}>
-      <Counter count={getItems(cartList)} />
+      <Counter count={getTotalCount(cartList)} />
       <QuickTip />
       <div className='cart_listContainer'>
         <CartList
@@ -53,9 +54,18 @@ const Cart = (props) => {
           onRemoveCartItem={onRemoveCartItem}
         />
       </div>
-      <Total total={getTotal(cartList)} />
+      <Total total={getTotalPrice(cartList)} />
     </div>
   )
+}
+
+Cart.defaultProps = {
+  className: 'col col-md-3 col-sm-4'
+}
+
+Cart.propTypes = {
+  className: PropTypes.string,
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default Cart
