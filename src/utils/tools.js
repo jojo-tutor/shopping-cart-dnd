@@ -32,3 +32,13 @@ export const formatCurrency = (number, numberFormat) => {
     numberFormat.options
   ).format(Number(number))
 }
+
+export const updateListItem = (list, comparatorFn, updaterFn) => list.map(item => {
+  if (comparatorFn(item)) {
+    item = {
+      ...item,
+      ...updaterFn(item)
+    }
+  }
+  return item
+})

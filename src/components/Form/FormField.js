@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types' 
 import startCase from 'lodash/startCase'
 import Image from '../Image'
 
@@ -32,6 +33,15 @@ const FormField = (props) => {
       />
     </div>
   )
+}
+
+FormField.propTypes = {
+  form: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired
 }
 
 export default FormField

@@ -61,6 +61,10 @@ const DndSource = (props) => {
 }
 
 DndSource.propTypes = {
+  hideHandle: PropTypes.bool,
+  children: PropTypes.func.isRequired,
+  dragItem: PropTypes.object.isRequired,
+  connectDragPreview: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
   isDragging: PropTypes.bool.isRequired
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types' 
 import FormField from './FormField'
 
 const FormList = (props) => {
@@ -16,6 +17,11 @@ const FormList = (props) => {
       value={fieldValues[form.id]}
     />
   ))
+}
+
+FormList.propTypes = {
+  forms: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fieldValues: PropTypes.object.isRequired
 }
 
 export default FormList

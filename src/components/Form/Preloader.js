@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types' 
 
 const Preloader = ({ label }) => (
   <div className='auth_progressLoader'>
@@ -8,5 +9,9 @@ const Preloader = ({ label }) => (
     <h1>{label}</h1>
   </div>
 )
+
+Preloader.propTypes = {
+  label: PropTypes.string.isRequired
+}
 
 export default Preloader

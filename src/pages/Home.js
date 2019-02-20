@@ -4,11 +4,7 @@ import Product from '../components/Product'
 import Cart from '../components/Cart'
 import withDnDContext from '../components/DnD/withDnDContext'
 import { onceGetDocuments } from '../api/db'
-import { makeCancelable } from '../utils/tools'
-
-const getCartProduct = (cartList, productList) => {
-  return cartList.map(cart => ({ ...cart, product: productList.find(product => cart.productId === product.id) }))
-}
+import { makeCancelable, updateListItem } from '../utils/tools'
 
 class Home extends PureComponent {
   state = {
@@ -31,38 +27,43 @@ class Home extends PureComponent {
     this.productListener.cancel()
   }
 
-  handleQuantityChange = (quantity, id) => {
-    this.setState(({ cartList }) => {
+  upsertCart(cartList, productId) {
+    const productExists = cartList.some(e => e.productId === productId)
+    if (productExists) {
       return {
-        cartList: cartList.map(cartItem => {
-          if (cartItem.id === id) {
-            cartItem.quantity = quantity
-          }
-          return cartItem
-        })
+        cartList: updateListItem(
+          cartList,
+          cartItem => cartItem.productId === productId,
+          cartItem => ({ quantity: Number(cartItem.quantity) + 1 })
+        )
       }
-    })
+    }
+
+    const cartItem = { id: uuidv1(), productId, quantity: 1 }
+    return {
+      cartList: [...cartList, cartItem]
+    }
+  }
+
+  getCartProduct = (cartList, productList) => {
+    return cartList.map(cart => ({
+      ...cart,
+      product: productList.find(product => cart.productId === product.id)
+    }))
+  }
+
+  handleQuantityChange = (quantity, cartItemId) => {
+    this.setState(({ cartList }) => ({
+      cartList: updateListItem(
+        cartList,
+        cartItem => cartItem.id === cartItemId,
+        () => ({ quantity })
+      )
+    }))
   }
 
   handleAddCartItem = (productId) => {
-    this.setState(({ cartList }) => {
-      const productExists = cartList.some(e => e.productId === productId)
-      if (productExists) {
-        return {
-          cartList: cartList.map(cartItem => {
-            if (cartItem.productId === productId) {
-              return { ...cartItem, quantity: Number(cartItem.quantity) + 1 }
-            }
-            return cartItem
-          })
-        }
-      }
-
-      const cartItem = { id: uuidv1(), productId, quantity: 1 }
-      return {
-        cartList: [...cartList, cartItem]
-      }
-    })
+    this.setState(({ cartList }) => this.upsertCart(cartList, productId))
   }
 
   handleRemoveCartItem = (id) => {
@@ -73,22 +74,20 @@ class Home extends PureComponent {
     const { productList, cartList } = this.state
 
     return (
-      <div className="page shop row">
+      <div className='page shop row'>
         <Product
-          className='col col-md-9 col-sm-8'
           productList={productList}
           onAddCartItem={this.handleAddCartItem}
         />
 
         <Cart
-          className='col col-md-3 col-sm-4'
-          cartList={getCartProduct(cartList, productList)}
+          cartList={this.getCartProduct(cartList, productList)}
           onQuantityChange={this.handleQuantityChange}
           onAddCartItem={this.handleAddCartItem}
           onRemoveCartItem={this.handleRemoveCartItem}
         />
       </div>
-    );
+    )
   }
 }
 
