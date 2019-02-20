@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import uuidv1 from 'uuid/v1'
 import Product from '../components/Product'
 import Cart from '../components/Cart'
@@ -10,7 +10,7 @@ const getCartProduct = (cartList, productList) => {
   return cartList.map(cart => ({ ...cart, product: productList.find(product => cart.productId === product.id) }))
 }
 
-class Home extends Component {
+class Home extends PureComponent {
   state = {
     cartList: [],
     productList: []
