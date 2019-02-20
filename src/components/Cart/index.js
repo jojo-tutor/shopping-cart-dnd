@@ -60,8 +60,8 @@ const Cart = (props) => {
 }
 
 Cart.propTypes = {
-  cartList: PropTypes.array.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default Cart
