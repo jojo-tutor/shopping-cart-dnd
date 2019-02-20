@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import cn from 'classnames'
 import Counter from './Counter'
 import QuickTip from './QuickTip'
@@ -56,6 +57,11 @@ const Cart = (props) => {
       <Total total={getTotalPrice(cartList)} />
     </div>
   )
+}
+
+Cart.propTypes = {
+  cartList: PropTypes.array.isRequired,
+  className: PropTypes.string
 }
 
 export default Cart
