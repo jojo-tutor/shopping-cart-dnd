@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Image from '../Image'
 import { formatCurrency } from '../../utils/tools'
 
@@ -52,6 +53,12 @@ const CartItem = (props) => {
 
     </div>
   )
+}
+
+CartItem.propTypes = {
+  cart: PropTypes.object.isRequired,
+  onQuantityChange: PropTypes.func.isRequired,
+  onRemoveCartItem: PropTypes.func.isRequired
 }
 
 export default CartItem

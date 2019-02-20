@@ -20,4 +20,8 @@ const QuickTip = (props) => {
   )
 }
 
+QuickTip.propTypes = {
+
+}
+
 export default QuickTip

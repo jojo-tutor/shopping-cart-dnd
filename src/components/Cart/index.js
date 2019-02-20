@@ -16,7 +16,7 @@ const numberFormat = {
   }
 }
 
-const getTotal = (list) => {
+const getTotalPrice = (list) => {
   const total = list.reduce((acc, curr) => {
     const { quantity, product = {} } = curr
     return acc + (Number(quantity) * Number(product.price))
@@ -25,7 +25,7 @@ const getTotal = (list) => {
   return formatCurrency(total)
 }
 
-const getItems = (list) => {
+const getTotalCount = (list) => {
   return list.reduce((acc, curr) => {
     const { quantity, product = {} } = curr
     return acc + Number(quantity)
@@ -43,7 +43,7 @@ const Cart = (props) => {
     
   return (
     <div className={cn('cart', className)}>
-      <Counter count={getItems(cartList)} />
+      <Counter count={getTotalCount(cartList)} />
       <QuickTip />
       <div className='cart_listContainer'>
         <CartList
@@ -53,7 +53,7 @@ const Cart = (props) => {
           onRemoveCartItem={onRemoveCartItem}
         />
       </div>
-      <Total total={getTotal(cartList)} />
+      <Total total={getTotalPrice(cartList)} />
     </div>
   )
 }
