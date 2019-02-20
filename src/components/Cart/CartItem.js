@@ -1,11 +1,12 @@
 import React from 'react'
 import Image from '../Image'
+import { formatCurrency } from '../../utils/tools'
 
 const CartItem = (props) => {
   const { item, onQuantityChange, onRemoveCartItem } = props
   const { id, quantity, product } = item
-  const { title, description, price, imageSource } = product || {}
-  const total = Number(quantity) * Number(price)
+  const { title, description, price, imageSource, vendor } = product || {}
+  const total = formatCurrency(Number(quantity) * Number(price))
 
   return (
     <div className="cart_item">
@@ -20,6 +21,7 @@ const CartItem = (props) => {
 
         <div className="cart_item_content">
           <h1 className="title">{ title }</h1>
+          <p className="vendor">{ vendor }</p>
           <div className="quantity">
             <label>
               Qty
@@ -34,8 +36,8 @@ const CartItem = (props) => {
         </div>
 
         <div className="cart_item_total">
-          <span className="label">total :</span>
-          <h1 className="total">${ total }</h1>
+          <span className="label">Sub-total</span>
+          <h1 className="total">{ total }</h1>
         </div>
       </div>
 

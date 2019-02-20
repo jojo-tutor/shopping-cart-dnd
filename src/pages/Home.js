@@ -4,6 +4,7 @@ import Product from '../components/Product'
 import Cart from '../components/Cart'
 import withDragDropContext from '../components/DnD/withDragDropContext'
 import { onceGetDocuments } from '../api/db'
+import { makeCancelable } from '../utils/tools'
 
 const getCartProduct = (cartList, productList) => {
   return cartList.map(cart => ({ ...cart, product: productList.find(product => cart.productId === product.id) }))
@@ -16,10 +17,18 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    onceGetDocuments('/products').then((products) => {
-      const productList = Object.entries(products).reduce((acc, [key, value]) => ([...acc, value]), [])
-      this.setState({ productList })
-    })
+    this.productListener = makeCancelable(onceGetDocuments('/products'))
+    this.productListener
+      .promise
+      .then((products) => {
+        const productList = Object.entries(products).reduce((acc, [key, value]) => ([...acc, value]), [])
+        this.setState({ productList })
+      })
+      .catch(error => console.log(error))
+  }
+
+  componentWillUnmount() {
+    this.productListener.cancel()
   }
 
   handleQuantityChange = (quantity, id) => {
@@ -66,13 +75,13 @@ class Home extends Component {
     return (
       <div className="shop row">
         <Product
-          className='col-sm-8'
+          className='col col-sm-8'
           productList={productList}
           onAddCartItem={this.handleAddCartItem}
         />
 
         <Cart
-          className='col-sm-4'
+          className='col col-sm-4'
           list={getCartProduct(cartList, productList)}
           onQuantityChange={this.handleQuantityChange}
           onAddCartItem={this.handleAddCartItem}

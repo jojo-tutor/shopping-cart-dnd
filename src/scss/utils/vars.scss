@@ -11,6 +11,7 @@ $white: #FFF;
 
 $gray: #A8A8A8;
 $lightgray: #dedede;
+$lightgrayblue: #f4f6f9;
 
 $red: #FF4444;
 $yellow: #FFD544;
@@ -19,6 +20,8 @@ $teal: #1FC8B6;
 $blue: #0060FF;
 $purple: #902BEE;
 $jade: #008B98;
+
+$error-color: $red;
 
 // ========================
 // SYSTEM COLORS
@@ -79,6 +82,10 @@ $font-family: gotham;
 // ========================
 $nav-height: 5em;
 
+// ========================
+// AUTH
+// ========================
+$auth-bg: #F1F4F8;
 
 // ========================
 // CART

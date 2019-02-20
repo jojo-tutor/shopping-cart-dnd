@@ -10,7 +10,7 @@ const Total = (props) => {
         Total
       </h3>
       <h2 className="value">
-        ${ total }
+        { total }
       </h2>
     </div>
   )

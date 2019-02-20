@@ -22,58 +22,6 @@ cd shopping-cart-dnd
 yarn && yarn dev
 ```
 
-## Usage
-Ex. 1:
-```jsx
-import { ErrorHandler } from 'react-error-handler';
-
-<ErrorHandler
-    onError={(error, info) => this.handleError}
-    errorElement={<div>I'm custom error element!</div>}
->
-    <WrappedComponent />
-</ErrorHandler>
-```
-
-Ex. 2:
-```jsx
-import React, { Component } from 'react';
-import { withErrorHandler } from 'react-error-handler';
-
-class Example2 extends Component {
-  render() {
-    return (
-      <div>Example 2</div>
-    );
-  }
-}
-export default withErrorHandler(Example2);
-```
-
-Ex. 3
-```jsx
-import React, { Component } from 'react';
-import { withErrorHandler } from 'react-error-handler';
-
-const FunctionalComponent1 = (props) => {
-  return (
-    <div>
-      Example 3
-    </div>)
-}
-
-const WrappedFunctional1 = withErrorHandler(FunctionalComponent1)
-class About extends Component {
-  render() {
-    return (
-      <div className='example3'>
-        <WrappedFunctional1 />
-      </div>
-    );
-  }
-}
-```
-
 ## Authors
 **Jojo E. Tutor**
 

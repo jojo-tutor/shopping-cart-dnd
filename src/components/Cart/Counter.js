@@ -13,10 +13,7 @@ const Counter = (props) => {
           { count }
         </span>
         <span className='suffix'>
-          { count > 1 
-            ? 'items'
-            : 'item'
-          }
+          {`item${ count > 1 ? 's' : ''}`}
         </span>
       </h2>
     </div>

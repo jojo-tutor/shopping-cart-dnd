@@ -1,0 +1,97 @@
+.auth {
+	width: 100vw;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: $auth-bg;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	// .auth_logo
+	&_logo {
+		width: 5em;
+		height: auto;
+		margin-bottom: 2em;
+		img {
+			width: 100%;
+		}
+	}
+
+	// .auth_paper
+	&_paper {
+		padding: 1em;
+		background-color: #fff;
+		width: calc(100% - 1em);
+		max-width: 600px;
+		margin: 0 auto;
+		position: relative;
+		box-shadow: 0 0 2em 0 rgba(#000,.05);
+	}
+
+	// .auth_header
+	&_header {
+		text-align: center;
+		color: $tertiary-color;
+	}
+
+	// .auth_form
+	&_form {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-direction: column;
+
+		.field {
+			width: 100%;
+			margin-bottom: 2em;
+			label {
+				display: block;
+				width: 100%;
+				margin-bottom: .25em;
+				font-weight: 600;
+				text-transform: uppercase;
+				font-size: .8em;
+				letter-spacing: .15em;
+				color: $text-color;
+			}
+			input {
+				width: 100%;
+				font-size: 1.25em;
+				padding: .5em 1em;
+				border: none;
+				background-color: $lightgrayblue;
+				line-height: 1;
+				color: $text-color;
+				font-weight: 500;
+				outline: none !important;
+			}
+		}
+	}
+
+	// .auth_error
+	&_error {
+		padding: .5em 1em;
+		margin: .5em 0;
+		border-left: .5em solid $error-color;
+		background-color: lighten( $error-color , 30% );
+		p { 
+			font-weight: 500;
+			line-height: 1.5;
+			color: darken($error-color, 20%);
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+	}
+
+	// .auth_extras
+	&_extras {
+		text-align: center;
+		.noAccount {
+			color: $text-color-light;
+			font-weight: 500;
+			font-style: italic;
+		}
+	}
+}
