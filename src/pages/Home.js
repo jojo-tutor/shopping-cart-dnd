@@ -17,14 +17,14 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.productListener = makeCancelable( onceGetDocuments('/products'));
+    this.productListener = makeCancelable(onceGetDocuments('/products'))
     this.productListener
       .promise
       .then((products) => {
         const productList = Object.entries(products).reduce((acc, [key, value]) => ([...acc, value]), [])
         this.setState({ productList })
       })
-      .catch(({isCanceled, ...error}) => console.log('isCanceled', isCanceled));
+      .catch(error => console.log(error))
   }
 
   componentWillUnmount() {

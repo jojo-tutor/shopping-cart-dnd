@@ -7,12 +7,12 @@ import 'scss/auth/index.scss'
 
 export default class Login extends React.Component {
   state = {
+    error: '',
+    isProcessing: false,
     fieldValues: {
       email: '',
       password: ''
-    },
-    isProcessing: false,
-    error: ''
+    }
   }
 
   handleChange = (e) => {
@@ -24,21 +24,23 @@ export default class Login extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.setState({ isProcessing: true }, () => setTimeout(() => {
+    this.setState({ isProcessing: true }, () => {
       this.doLogin(this.state.fieldValues)
-    }, 1000))
+    })
   }
 
-  doLogin = ({ email, password }) => {
-    auth.doSignInWithEmailAndPassword(email, password)
-      .then(({ user }) => {
-        const { registerUserSession, history } = this.props
-        registerUserSession(user)
-        history.push('/')
+  doLogin = async ({ email, password }) => {
+    try {
+      const { user } = await auth.doSignInWithEmailAndPassword(email, password)
+      const { registerUserSession, history } = this.props
+      registerUserSession(user)
+      history.push('/')
+    } catch ({ message: error }) {
+      this.setState({
+        error,
+        isProcessing: false
       })
-      .catch(({ message: error }) => {
-        this.setState({ error, isProcessing: false })
-      })
+    }
   }
 
   render(){
