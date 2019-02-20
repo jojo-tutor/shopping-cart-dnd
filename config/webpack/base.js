@@ -2,6 +2,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const merge = require('webpack-merge')
 const webpack = require('webpack')
+const LoadableWebpackPlugin = require('@loadable/webpack-plugin')
 require('dotenv').config({ path: resolvePath('config/.env') })
 
 const configs = {
@@ -56,6 +57,7 @@ function baseConfig(options){
     },
     plugins: [
       new webpack.DefinePlugin(getEnv()),
+      new LoadableWebpackPlugin()
     ],
     resolve: {
       modules: ['node_modules', 'src'],
