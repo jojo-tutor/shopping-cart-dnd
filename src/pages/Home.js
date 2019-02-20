@@ -74,15 +74,15 @@ class Home extends PureComponent {
     const { productList, cartList } = this.state
 
     return (
-      <div className="shop row">
+      <div className="page shop row">
         <Product
-          className='col col-sm-8'
+          className='col col-md-9 col-sm-8'
           productList={productList}
           onAddCartItem={this.handleAddCartItem}
         />
 
         <Cart
-          className='col col-sm-4'
+          className='col col-md-3 col-sm-4'
           cartList={getCartProduct(cartList, productList)}
           onQuantityChange={this.handleQuantityChange}
           onAddCartItem={this.handleAddCartItem}
