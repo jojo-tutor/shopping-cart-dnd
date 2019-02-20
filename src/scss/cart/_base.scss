@@ -50,10 +50,25 @@
 		flex-direction: column;
 		background-color: rgba($cart-bg,.9);
 
+
+
 		font-size: 1em;
 		text-transform: uppercase;
 		font-weight: 600;
 		text-align: center;
+
+		&:before {
+			content: '';
+			position: absolute;
+			pointer-events: none;
+			top: 1em;
+			left: 1em;
+			z-index: 10;
+			width: calc(100% - 2em);
+			height: calc(100% - 2em);
+			border-radius: .25em;
+			border: .25em dashed lighten($primary-color, 20%);
+		}
 		.item {
 			display: block;
 			font-size: 2em;
