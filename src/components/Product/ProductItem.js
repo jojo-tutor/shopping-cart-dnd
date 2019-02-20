@@ -1,6 +1,7 @@
 import React from 'react'
 import DragSource from '../DnD/DragSource'
 import Image from '../Image'
+import { formatCurrency } from '../../utils/tools'
 
 const ProductItem = (props) => {
   const {
@@ -62,12 +63,12 @@ const ProductItem = (props) => {
               <div className='prices'>
 
                 <div className='original'>
-                  ${ compareAtPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') }
+                  { formatCurrency(compareAtPrice) }
                 </div>
 
                 { isDiscounted && (
                   <div className='sale'>
-                    ${ price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') }
+                    { formatCurrency(price) }
                   </div>
                 )}
               </div>
