@@ -17,7 +17,7 @@ body {
 	width: 100%;
 }
 
-#root {
-	padding-top: $nav-height;
+.nav + .shop {
+	margin-top: $nav-height;
 }
 
