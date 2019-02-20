@@ -17,3 +17,18 @@ export const makeCancelable = (promise) => {
     },
   }
 }
+
+export const formatCurrency = (number, numberFormat) => {
+  numberFormat = numberFormat || {
+    locale: 'en-ph',
+    options: {
+      style: 'currency',
+      currency: 'Php'
+    }
+  }
+
+  return new Intl.NumberFormat(
+    numberFormat.locale,
+    numberFormat.options
+  ).format(Number(number))
+}
