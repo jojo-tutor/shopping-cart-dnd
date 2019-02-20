@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import uuidv1 from 'uuid/v1'
 import Product from '../components/Product'
 import Cart from '../components/Cart'
-import withDragDropContext from '../components/DnD/withDragDropContext'
+import withDnDContext from '../components/DnD/withDnDContext'
 import { onceGetDocuments } from '../api/db'
 import { makeCancelable } from '../utils/tools'
 
@@ -82,7 +82,7 @@ class Home extends Component {
 
         <Cart
           className='col col-sm-4'
-          list={getCartProduct(cartList, productList)}
+          cartList={getCartProduct(cartList, productList)}
           onQuantityChange={this.handleQuantityChange}
           onAddCartItem={this.handleAddCartItem}
           onRemoveCartItem={this.handleRemoveCartItem}
@@ -92,4 +92,4 @@ class Home extends Component {
   }
 }
 
-export default withDragDropContext(Home)
+export default withDnDContext(Home)
