@@ -93,9 +93,19 @@
 			line-height: 1.2em;
 			text-align: left;
 			margin-top: 0;
-			margin-bottom: .5em;
+			margin-bottom: .25em;
 			color: $text-color;
 		}
+
+		.vendor {
+			font-size: .8em;
+			font-weight: 600;
+			color: $tertiary-color;
+			margin-top: 0;
+			margin-bottom: .5em;
+			text-transform: uppercase;
+		}
+
 		.desc {
 			margin-top: 0;
 			text-align: left;
@@ -108,7 +118,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: flex-start;
-			font-size: 1.5em;
+			font-size: 1.15em;
 			font-weight: 600;
 			margin-top: auto;
 			.sale ,
@@ -120,6 +130,7 @@
 
 			.original {
 				color: $gray;
+				text-decoration: line-through;
 			}
 
 			.sale {
