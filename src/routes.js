@@ -1,9 +1,12 @@
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import Auth from './pages/Auth'
-import Home from './pages/Home'
-import About from './pages/About'
-import NotFound from './pages/NotFound'
+import loadable from '@loadable/component'
+
+const Login = loadable(() => import('./pages/Login'))
+const Signup = loadable(() => import('./pages/Signup'))
+const Auth = loadable(() => import('./pages/Auth'))
+const Home = loadable(() => import('./pages/Home'))
+const About = loadable(() => import('./pages/About'))
+const NotFound = loadable(() => import('./pages/NotFound'))
+
 
 export default  [
   {
