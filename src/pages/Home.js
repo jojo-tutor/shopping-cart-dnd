@@ -89,7 +89,7 @@ class Home extends PureComponent {
           onRemoveCartItem={this.handleRemoveCartItem}
         />
       </div>
-    );
+    )
   }
 }
 
