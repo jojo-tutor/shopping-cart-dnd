@@ -1,68 +1,85 @@
 import React from 'react'
+import DragSource from '../DnD/DragSource'
+import Image from '../Image'
 
 const ProductItem = (props) => {
-  const { title, description, originalPrice, sellPrice, imageSource } = props.product
+  const {
+    product
+    , onAddCartItem
+  } = props
 
-  const isDiscounted = originalPrice > sellPrice
+  const {
+    id
+    , title
+    , price
+    , description
+    , imageSource
+    , compareAtPrice
+  } = product
+
+  const isDiscounted = Number(compareAtPrice) > Number(price)
 
   return (
-    <div className='productCard product_list_item'>
+    <DragSource hideHandle dragItem={product}>
+      {() => (
+        <div className='productCard product_list_item'>
+          <div className='productCard_img'>
+            <Image
+              src={imageSource}
+              alt='Product'
+            />
 
-      <div className='productCard_img'>
-        <img
-          src={imageSource}
-          alt='product'
-        />
-
-        <div className='productCard_action'>
-          <img
-            className='icon' 
-            src='images/drag_action.png' 
-            alt=''/>
-          <p className='info'>
-            Drag this item to the cart to purchase
-          </p>
-        </div>
-
-      </div>
-
-      { isDiscounted && (
-        <div className='productCard_sale'>
-          Sale
-        </div>
-      )}
-
-      <div className='productCard_content'>
-        <h1 className='title'>
-            { title }
-        </h1>
-        <p className='desc'>
-          { description }
-        </p>
-
-
-        <div className='row_action'>
-          <div className='prices'>
-
-            <div className='original'>
-              ${ originalPrice }
+            <div className='productCard_action'>
+              <Image
+                className='icon' 
+                src='images/drag_action.png' 
+                alt='Drag Action'
+              />
+              <p className='info'>
+                Drag this item to the cart to purchase
+              </p>
             </div>
 
-            { isDiscounted && (
-              <div className='sale'>
-                ${ sellPrice }
-              </div>
-            )}
           </div>
 
-          <button className='productCard_buynow'>
-            <i class='wtfs wtf-shopping-cart'></i>
-          </button>
+          { isDiscounted && (
+            <div className='productCard_sale'>
+              Sale
+            </div>
+          )}
+
+          <div className='productCard_content'>
+            <h1 className='title'>
+                { title }
+            </h1>
+            <p className='desc'>
+              { description }
+            </p>
+
+
+            <div className='row_action'>
+              <div className='prices'>
+
+                <div className='original'>
+                  ${ compareAtPrice }
+                </div>
+
+                { isDiscounted && (
+                  <div className='sale'>
+                    ${ price }
+                  </div>
+                )}
+              </div>
+
+              <button className='productCard_buynow' onClick={() => onAddCartItem(id)}>
+                <i className='wtfs wtf-shopping-cart'></i>
+              </button>
+            </div>
+
+          </div>
         </div>
-
-
-      </div>
-    </div>
+      )}
+    </DragSource>
   )
 }
 

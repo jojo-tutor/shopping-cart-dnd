@@ -1,10 +1,14 @@
 import React from 'react'
+import Image from '../Image'
 
 const QuickTip = (props) => {
   return (
     <div className='cart_quicktip'>
       <div className='icon'>
-        <img src='images/drag_icon.png' alt=''/>
+        <Image
+          src='images/drag_icon.png'
+          alt='Drag Icon'
+        />
       </div>
       <div className='tip'>
         <h3 className='tip_header'>Quick Tip:</h3>

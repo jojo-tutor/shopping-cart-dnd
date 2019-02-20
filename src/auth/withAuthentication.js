@@ -1,25 +1,31 @@
 import React from 'react'
 import AuthUserContext from './AuthUserContext'
-import { firebase } from '../../firebase'
+import { firebase } from '../api'
 
 export default function withAuthentication(Component) {
   return class WithAuthentication extends React.Component {
-    state={
-      authUser: null,
+    state = {
+      authUser: null
     }
+
     componentDidMount() {
       this.authListener = firebase.auth.onAuthStateChanged(authUser => {
-        authUser
-          ? this.setState(() => ({ authUser }))
-          : this.setState(() => ({ authUser: null }));
+        this.setState({ authUser: authUser || null })
       })
     }
+
     componentWillUnmount() {
-      console.log('@unmounted')
       this.authListener = null
     }
+
     render() {
+
+      if (!this.authListener) {
+        return <div className="loader">Loading...</div>
+      }
+
       const { authUser } = this.state
+
       return (
         <AuthUserContext.Provider value={authUser}>
           <Component {...this.props} />
