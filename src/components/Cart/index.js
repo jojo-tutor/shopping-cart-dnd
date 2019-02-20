@@ -10,7 +10,7 @@ const getTotal = (list) => {
   return list.reduce((acc, curr) => {
     const { quantity, product = {} } = curr
     return acc + (Number(quantity) * Number(product.price))
-  }, 0)
+  }, 0).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
 }
 
 const Cart = (props) => {
@@ -26,12 +26,14 @@ const Cart = (props) => {
     <div className={`cart ${className}`}>
       <Counter count={list.length} />
       <QuickTip />
-      <CartList
-        list={list}
-        onQuantityChange={onQuantityChange}
-        onAddCartItem={onAddCartItem}
-        onRemoveCartItem={onRemoveCartItem}
-      />
+      <div className='cart_listContainer'>
+        <CartList
+          list={list}
+          onQuantityChange={onQuantityChange}
+          onAddCartItem={onAddCartItem}
+          onRemoveCartItem={onRemoveCartItem}
+        />
+      </div>
       <Total total={getTotal(list)} />
     </div>
   )

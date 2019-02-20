@@ -15,6 +15,7 @@ const ProductItem = (props) => {
     , description
     , imageSource
     , compareAtPrice
+    , vendor
   } = product
 
   const isDiscounted = Number(compareAtPrice) > Number(price)
@@ -52,8 +53,8 @@ const ProductItem = (props) => {
             <h1 className='title'>
                 { title }
             </h1>
-            <p className='desc'>
-              { description }
+            <p className='vendor'>
+              { vendor }
             </p>
 
 
@@ -61,12 +62,12 @@ const ProductItem = (props) => {
               <div className='prices'>
 
                 <div className='original'>
-                  ${ compareAtPrice }
+                  ${ compareAtPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') }
                 </div>
 
                 { isDiscounted && (
                   <div className='sale'>
-                    ${ price }
+                    ${ price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') }
                   </div>
                 )}
               </div>

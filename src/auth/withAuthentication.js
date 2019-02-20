@@ -26,7 +26,13 @@ export default function withAuthentication(Component) {
     render() {
 
       if (!this.authListener) {
-        return <div className="loader">Loading...</div>
+        return ( 
+          <div className="page_loader">
+            <div class="loader">
+              <hr/><hr/><hr/><hr/>
+            </div>
+          </div> 
+        )
       }
 
       const { session } = this.state
