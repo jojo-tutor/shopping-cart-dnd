@@ -67,7 +67,7 @@ Form.propTypes = {
   preloaderLabel: PropTypes.string.isRequired,
   headerTitleLabel: PropTypes.string.isRequired,
   submitButtonLabel: PropTypes.string.isRequired,
-  footerLinkTo: propTypes.string.isRequired,
+  footerLinkTo: PropTypes.string.isRequired,
   footerLinkLabel: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,

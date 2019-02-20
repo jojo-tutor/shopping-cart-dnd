@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import Form from '../components/Form'
 import Logo from '../components/Form/Logo'
 import Preloader from '../components/Form/Preloader'
@@ -80,6 +81,10 @@ class Signup extends PureComponent {
       />
     )
   }
+}
+
+Signup.propTypes = {
+  history: PropTypes.object.isRequired
 }
 
 export default Signup

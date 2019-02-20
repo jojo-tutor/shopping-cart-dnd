@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
@@ -85,6 +86,12 @@ class Login extends PureComponent {
       />
     )
   }
+}
+
+Login.propTypes = {
+  session: PropTypes.object,
+  history: PropTypes.object.isRequired,
+  registerUserSession: PropTypes.func.isRequired
 }
 
 export default Login
