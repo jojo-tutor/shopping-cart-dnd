@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import cn from 'classnames'
 import { auth } from '../api'
 import 'scss/auth/index.scss'
 
@@ -76,13 +77,18 @@ export default class Login extends React.Component {
               />
             </div>
             <input
-              class='btn btn-primary'
               type='submit'
               value='Submit'
+              disabled={isProcessing}
+              className={cn('btn btn-primary', { processing: isProcessing })}
             />
           </form>
           <p className='auth_extras'>
-            <Link to='/signup' className='noAccount'>I don't have an account</Link>
+            <Link
+              to='/signup'
+              className='noAccount'>
+              I don't have an account
+            </Link>
           </p>
         </div>
       </div>

@@ -57,16 +57,16 @@ export default class Signup extends React.Component {
               />
             </div>
             <div className='field'>
-              <label htmlFor='password'>Confirm Password</label>
+              <label htmlFor='confirmPassword'>Confirm Password</label>
               <input
                 required
-                id='password'
+                id='confirmPassword'
                 type='password'
-                name='password'
+                name='confirmPassword'
               />
             </div>
             <input
-              class='btn btn-primary'
+              className='btn btn-primary'
               type='submit'
               value='Register'
             />
