@@ -9,8 +9,8 @@ const navigationList = [
     label: 'Home'
   },
   {
-    value: '/help',
-    label: 'Help'
+    value: '/about',
+    label: 'About'
   }
 ]
 
