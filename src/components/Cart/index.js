@@ -34,7 +34,7 @@ const getItems = (list) => {
 
 const Cart = (props) => {
   const { 
-    list
+    cartList
     , className
     , onQuantityChange
     , onAddCartItem
@@ -43,17 +43,17 @@ const Cart = (props) => {
     
   return (
     <div className={cn('cart', className)}>
-      <Counter count={getItems(list)} />
+      <Counter count={getItems(cartList)} />
       <QuickTip />
       <div className='cart_listContainer'>
         <CartList
-          list={list}
+          carts={cartList}
           onQuantityChange={onQuantityChange}
           onAddCartItem={onAddCartItem}
           onRemoveCartItem={onRemoveCartItem}
         />
       </div>
-      <Total total={getTotal(list)} />
+      <Total total={getTotal(cartList)} />
     </div>
   )
 }

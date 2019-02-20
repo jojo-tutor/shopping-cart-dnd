@@ -3,8 +3,8 @@ import Image from '../Image'
 import { formatCurrency } from '../../utils/tools'
 
 const CartItem = (props) => {
-  const { item, onQuantityChange, onRemoveCartItem } = props
-  const { id, quantity, product } = item
+  const { cart, onQuantityChange, onRemoveCartItem } = props
+  const { id, quantity, product } = cart
   const { title, description, price, imageSource, vendor } = product || {}
   const total = formatCurrency(Number(quantity) * Number(price))
 

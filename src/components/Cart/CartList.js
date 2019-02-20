@@ -15,7 +15,7 @@ const renderDropProductPreview = (product) => (
 
 const CartList = (props) => {
   const {
-    list
+    carts
     , onQuantityChange
     , onAddCartItem
     , onRemoveCartItem
@@ -26,10 +26,10 @@ const CartList = (props) => {
       {({ sourceItem, isOver }) => (
         <div className={cn('cart_list',{'cart_list-dropping': isOver})}>
         	{(isOver && sourceItem) && renderDropProductPreview(sourceItem)}
-          {list.map(item => (
+          {carts.map(cart => (
             <CartItem
-              key={item.id}
-              item={item}
+              key={cart.id}
+              cart={cart}
               onQuantityChange={onQuantityChange}
               onRemoveCartItem={onRemoveCartItem}
             />
