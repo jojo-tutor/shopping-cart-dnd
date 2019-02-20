@@ -17,7 +17,7 @@ Total.propTypes = {
   total: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string
-  ])
+  ]).isRequired
 }
 
 export default Total

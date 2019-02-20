@@ -21,7 +21,7 @@ Counter.propTypes = {
   count: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string
-  ])
+  ]).isRequired
 }
 
 export default Counter
