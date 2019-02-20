@@ -28,7 +28,7 @@ export default function withAuthentication(Component) {
       if (!this.authListener) {
         return ( 
           <div className="page_loader">
-            <div class="loader">
+            <div className="loader">
               <hr/><hr/><hr/><hr/>
             </div>
           </div> 
