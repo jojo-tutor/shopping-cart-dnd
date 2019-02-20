@@ -50,7 +50,7 @@ const Navigation = (props) => {
         <button
           className='btn btn-inverted-red nav_logout'
           onClick={signOut}>
-          Signout
+          Sign Out
         </button>
       </div>
 
