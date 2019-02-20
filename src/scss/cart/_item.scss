@@ -2,7 +2,7 @@ $graphic-size: 5em;
 
 .cart_item {
 	position: relative;
-	padding: .5em 1em;
+	padding: .5em 1.15em;
 
 	&:nth-child(even) {
 		background-color: rgba(#000,.025);
@@ -117,7 +117,7 @@ $graphic-size: 5em;
 	.row_actions {
 		justify-content: flex-end;
 		position: absolute;
-		right: 0;
+		right: 1.15em;
 		bottom: .5em;
 	}
 }
