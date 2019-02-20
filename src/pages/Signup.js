@@ -32,6 +32,22 @@ export default class Signup extends React.Component {
     return (
       <div className='auth'>
         <div className='auth_paper'>
+
+          { error && (
+            <div className="auth_error">
+              <p>{ error }</p>
+            </div>
+          )}
+
+          { isProcessing && (
+            <div className='auth_progressLoader'>
+              <div class="loader">
+                <hr/><hr/><hr/><hr/>
+              </div>
+              <h1>authenticating</h1>
+            </div>
+          )}
+
           <h1 className='auth_header'>
             Signup
           </h1>
@@ -66,7 +82,7 @@ export default class Signup extends React.Component {
               />
             </div>
             <input
-              class='btn btn-primary'
+              className='btn btn-primary'
               type='submit'
               value='Register'
             />
