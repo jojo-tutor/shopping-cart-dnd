@@ -74,7 +74,7 @@ class Home extends PureComponent {
     const { productList, cartList } = this.state
 
     return (
-      <div className="page shop row">
+      <div className='page shop row'>
         <Product
           className='col col-md-9 col-sm-8'
           productList={productList}
