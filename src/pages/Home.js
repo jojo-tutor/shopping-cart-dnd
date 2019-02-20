@@ -66,13 +66,13 @@ class Home extends Component {
     return (
       <div className="shop row">
         <Product
-          className='col-sm-8'
+          className='col col-sm-8'
           productList={productList}
           onAddCartItem={this.handleAddCartItem}
         />
 
         <Cart
-          className='col-sm-4'
+          className='col col-sm-4'
           list={getCartProduct(cartList, productList)}
           onQuantityChange={this.handleQuantityChange}
           onAddCartItem={this.handleAddCartItem}

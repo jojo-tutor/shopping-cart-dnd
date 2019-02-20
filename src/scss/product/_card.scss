@@ -4,6 +4,8 @@
 	flex-direction: column;
 	box-shadow: 0 0 1em rgba(#000,.1);
 	padding: 1em;
+	height: 100%;
+
 	// .productCard_img ,
 	// .productCard_content
 	&_img ,
@@ -82,6 +84,10 @@
 	&_content {
 		font-size: 1em;
 		padding: 1em;
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+
 		.title {
 			font-size: 1.5em;
 			line-height: 1.2em;
@@ -149,6 +155,7 @@
 		align-items: center;
 		justify-content: flex-start;
 		flex-wrap: nowrap;
+		margin-top: auto;
 	}
 }
 
