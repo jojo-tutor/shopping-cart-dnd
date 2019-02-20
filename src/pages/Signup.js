@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { auth, db } from '../api'
+import 'scss/auth/index.scss'
 
 export default class Signup extends React.Component {
   state={
@@ -29,11 +30,51 @@ export default class Signup extends React.Component {
   render() {
     const { requesting, error } = this.state
     return (
-      <div>
-        <p>Signup</p>
-        <p>
-          <Link to='/login'>Already have an account</Link>
-        </p>
+      <div className='auth'>
+        <div className='auth_paper'>
+          <h1 className='auth_header'>
+            Signup
+          </h1>
+          <form 
+            className='auth_form' 
+            onSubmit={this.handleSubmit}>
+            <div className='field'>
+              <label htmlFor='email'>Email</label>
+              <input
+                required
+                id='email'
+                type='email'
+                name='email'
+              />
+            </div>
+            <div className='field'>
+              <label htmlFor='password'>Password</label>
+              <input
+                required
+                id='password'
+                type='password'
+                name='password'
+              />
+            </div>
+            <div className='field'>
+              <label htmlFor='password'>Confirm Password</label>
+              <input
+                required
+                id='password'
+                type='password'
+                name='password'
+              />
+            </div>
+            <input
+              class='btn btn-primary'
+              type='submit'
+              value='Register'
+            />
+          </form>
+          <p className='auth_extras'>
+            <Link to='/login'>Already have an account</Link>
+          </p>
+        </div>
       </div>
     )
   }
