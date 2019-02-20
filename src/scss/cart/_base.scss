@@ -81,6 +81,9 @@
 	&_grandtotal {
 		flex-shrink: 0;
 
+		padding: 1em 0;
+		border-top: .15em solid $text-color-light;
+
 		display: flex;
 		align-items: center;
 		justify-content: center;
