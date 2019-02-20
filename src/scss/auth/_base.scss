@@ -15,6 +15,8 @@
 		width: calc(100% - 1em);
 		max-width: 600px;
 		margin: 0 auto;
+		position: relative;
+		box-shadow: 0 0 2em 0 rgba(#000,.05);
 	}
 
 	// .auth_header
@@ -54,6 +56,18 @@
 				font-weight: 500;
 				outline: none !important;
 			}
+		}
+	}
+
+	// .auth_error
+	&_error {
+		padding: .5em 1em;
+		margin: .5em 0;
+		border-left: .5em solid $error-color;
+		background-color: lighten( $error-color , 30% );
+		p { 
+			font-weight: 500;
+			color: darken($error-color, 20%);
 		}
 	}
 
