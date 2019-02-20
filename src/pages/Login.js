@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
@@ -15,7 +15,7 @@ const formList = [
   }
 ]
 
-export default class Login extends React.Component {
+class Login extends PureComponent {
   state = {
     error: '',
     isProcessing: false,
@@ -86,3 +86,5 @@ export default class Login extends React.Component {
     )
   }
 }
+
+export default Login

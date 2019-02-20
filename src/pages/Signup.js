@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
 import Form from '../components/Form'
 import Logo from '../components/Form/Logo'
 import Preloader from '../components/Form/Preloader'
@@ -21,7 +21,7 @@ const formList = [
   }
 ]
 
-export default class Signup extends React.Component {
+class Signup extends PureComponent {
   state = {
     error: '',
     isProcessing: false,
@@ -81,3 +81,5 @@ export default class Signup extends React.Component {
     )
   }
 }
+
+export default Signup
