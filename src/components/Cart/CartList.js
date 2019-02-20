@@ -3,6 +3,12 @@ import CartItem from './CartItem'
 import DropTarget from '../DnD/DropTarget'
 import cn from 'classnames'
 
+const renderDropProductPreview = (product) => (
+  <div className='cart_purchaseIndicator'>
+    { product.title }
+  </div>
+)
+
 const CartList = (props) => {
   const {
     list
@@ -13,13 +19,9 @@ const CartList = (props) => {
 
   return (
     <DropTarget onDrop={droppedProduct => onAddCartItem(droppedProduct.id)}>
-      {({ droppedProduct, isOver }) => (
+      {({ sourceItem, isOver }) => (
         <div className={cn('cart_list',{'cart_list-dropping': isOver})}>
-        	{ isOver && droppedProduct && (
-	        	<div className='cart_purchaseIndicator'>
-              {droppedProduct.title}
-	        	</div>
-        	)}
+        	{(isOver && sourceItem) && renderDropProductPreview(sourceItem)}
           {list.map(item => (
             <CartItem
               key={item.id}

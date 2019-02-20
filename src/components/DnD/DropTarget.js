@@ -25,15 +25,12 @@ const collect = (connect, monitor) => ({
 
 const DndTarget = (props) => {
   // own props
-  const { position, children, ...restProps } = props
-
+  const { children, ...restProps } = props
 
   // injected props
-  const { isOverCurrent, canDrop, connectDropTarget } = restProps
+  const { connectDropTarget } = restProps
 
-  console.log('Dndtarget retst', restProps, props)
-  
-  return connectDropTarget(children({ ...restProps, isOverCurrent }))
+  return connectDropTarget(children(restProps))
 }
 
 export default DropTarget(Types.PRODUCT_TO_CART, target, collect)(DndTarget)
