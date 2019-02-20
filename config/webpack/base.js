@@ -27,6 +27,13 @@ function baseConfig(options){
       rules: [
         {
           oneOf: [
+            // {
+            //   test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.eot$/, /\.svg$/],
+            //   loader: require.resolve('url-loader'),
+            //   options: {
+            //     limit: 10000,
+            //   },
+            // },
             {
               test: /\.(js|jsx)$/,
               exclude: /node_modules|bower_components/,
