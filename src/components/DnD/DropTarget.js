@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { findDOMNode } from 'react-dom'
 import { DropTarget } from 'react-dnd'
-import Types from './DnDTypes'
+import Types from './Types'
 
 const target = {
   drop(props, monitor, component) {

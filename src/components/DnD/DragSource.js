@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DragSource } from 'react-dnd'
-import Types from './DnDTypes'
+import Types from './Types'
 
 const source = {
   beginDrag({ dragItem }) {
