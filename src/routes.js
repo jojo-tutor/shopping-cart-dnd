@@ -2,7 +2,7 @@ import loadable from '@loadable/component'
 
 const Login = loadable(() => import('./pages/Login'))
 const Signup = loadable(() => import('./pages/Signup'))
-const Auth = loadable(() => import('./pages/Auth'))
+const Main = loadable(() => import('./Main'))
 const Home = loadable(() => import('./pages/Home'))
 const About = loadable(() => import('./pages/About'))
 const NotFound = loadable(() => import('./pages/NotFound'))
@@ -22,7 +22,7 @@ export default  [
     exact: true
   },
   {
-    component: Auth,
+    component: Main,
     path: '/',
     key: 'app',
     routes: [
