@@ -10,12 +10,12 @@ const NavigationList = (props) => {
   return (
     <div className='nav_links'>
       {navigations.map(navigationItem => (
-          <NavigationItem
-            key={navigationItem.value}
-            navigation={navigationItem}
-            isLinkActive={isLinkActive}
-          />
-        ))}
+        <NavigationItem
+          key={navigationItem.value}
+          navigation={navigationItem}
+          isLinkActive={isLinkActive}
+        />
+      ))}
     </div>
   )
 }

@@ -6,6 +6,17 @@ import Navigation from '../components/Navigation/index'
 import { AuthUserContext } from '../auth'
 import { auth } from '../api'
 
+const navigationList = [
+  {
+    value: '/',
+    label: 'Home'
+  },
+  {
+    value: '/about',
+    label: 'About'
+  }
+]
+
 const renderLogin = () => <Redirect to='/login' />
 
 const renderAuthenticated = ({ route, location, session }) => (
@@ -14,6 +25,7 @@ const renderAuthenticated = ({ route, location, session }) => (
       session={session}
       location={location}
       signOut={auth.doSignOut}
+      navigationList={navigationList}
     />
     {renderRoutes(route.routes)}
   </>
