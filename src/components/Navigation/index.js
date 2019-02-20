@@ -16,7 +16,7 @@ const navigationList = [
 
 const Navigation = (props) => {
   const {
-    user
+    session
     , signOut
     , location
   } = props
@@ -35,7 +35,7 @@ const Navigation = (props) => {
         />
       </NavLink>
       <div className="session_email">
-        { user.email }
+        { session.email }
       </div>
       <div className='nav_links'>
         <NavigationList

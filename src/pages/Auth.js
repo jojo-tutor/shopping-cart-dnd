@@ -1,5 +1,6 @@
 import React from 'react'
 import { renderRoutes } from 'react-router-config'
+import { Link } from 'react-router-dom'
 import Navigation from '../components/Navigation/index'
 import { AuthUserContext } from '../auth'
 import { auth } from '../api'
@@ -16,10 +17,10 @@ const renderLogin = () => (
   </div>
 )
 
-const renderAuthenticated = ({ route, location, user }) => (
+const renderAuthenticated = ({ route, location, session }) => (
   <>
     <Navigation
-      user={user}
+      session={session}
       location={location}
       signOut={auth.doSignOut}
     />
@@ -29,7 +30,7 @@ const renderAuthenticated = ({ route, location, user }) => (
 
 const Auth = (props) => (
   <AuthUserContext.Consumer>
-    {user => user ? renderAuthenticated({ ...props, user }) : renderLogin()}
+    {session => session ? renderAuthenticated({ ...props, session }) : renderLogin()}
   </AuthUserContext.Consumer>
 )
 
