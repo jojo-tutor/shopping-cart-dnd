@@ -5,7 +5,11 @@ import cn from 'classnames'
 
 const renderDropProductPreview = (product) => (
   <div className='cart_purchaseIndicator'>
-    { product.title }
+    add 
+    <div className='item'>
+      { product.title }
+    </div>
+    to cart
   </div>
 )
 

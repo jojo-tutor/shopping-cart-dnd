@@ -1,3 +1,5 @@
+$graphic-size: 5em;
+
 .cart_item {
 	position: relative;
 	padding: .5em 1em;
@@ -8,8 +10,8 @@
 
 	// .cart_item_graphic
 	&_graphic {
-		width: 8em;
-		height: 8em;
+		width: $graphic-size;
+		height: $graphic-size;
 		flex-shrink: 0;
 
 		img {
@@ -24,12 +26,12 @@
 	&_content {
 		flex-shrink: 1;
 		flex-grow: 1;
-		padding: 1em .5em;
+		padding: .5em;
 		display: flex;
 		flex-direction: column;
 
 		.title {
-			margin-top: 1em;
+			margin-top: 0;
 			margin-bottom: .25em;
 			font-size: 1em;
 			line-height: 1;
@@ -88,7 +90,7 @@
 			color: $text-color-light;
 		}
 		.total {
-			font-size: 2em;
+			font-size: 1.25em;
 			font-weight: 600;
 			margin-top: 0;
 			margin-bottom: 0;
