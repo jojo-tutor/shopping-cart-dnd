@@ -8,7 +8,7 @@ const NavigationList = (props) => {
   } = props
 
   return (
-    <div className='navigation_list'>
+    <div className='nav_links'>
       {navigations.map(navigationItem => (
           <NavigationItem
             key={navigationItem.value}

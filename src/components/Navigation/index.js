@@ -34,20 +34,26 @@ const Navigation = (props) => {
           alt="Logo"
         />
       </NavLink>
-      <div className="session_email">
-        { session.email }
-      </div>
-      <div className='nav_links'>
-        <NavigationList
-          navigations={navigationList}
-          isLinkActive={isLinkActive}
-        />
+
+      <NavigationList
+        navigations={navigationList}
+        isLinkActive={isLinkActive}
+      />
+
+      <div className='nav_userActions'>
+        { session.email && (
+          <div className="nav_session">
+            welcome back, 
+            <span className="email"> { session.email } </span>
+          </div>
+        )}
         <button
           className='btn btn-inverted-red nav_logout'
           onClick={signOut}>
           Signout
         </button>
       </div>
+
     </nav>
   )
 }

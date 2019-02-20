@@ -3,10 +3,21 @@
 	height: 100vh;
 	overflow-x: hidden;
 	overflow-y: auto;
-	background-color: $login-bg;
+	background-color: $auth-bg;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
+
+	// .auth_logo
+	&_logo {
+		width: 5em;
+		height: auto;
+		margin-bottom: 2em;
+		img {
+			width: 100%;
+		}
+	}
 
 	// .auth_paper
 	&_paper {
@@ -67,7 +78,10 @@
 		background-color: lighten( $error-color , 30% );
 		p { 
 			font-weight: 500;
+			line-height: 1.5;
 			color: darken($error-color, 20%);
+			margin-top: 0;
+			margin-bottom: 0;
 		}
 	}
 

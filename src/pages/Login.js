@@ -47,6 +47,9 @@ export default class Login extends React.Component {
 
     return (
       <div className={cn('auth',{'auth-processing': isProcessing }) }>
+        <div className="auth_logo">
+          <img src="/images/logo.png" alt=""/>
+        </div>
         <div className='auth_paper'>
 
           { error && (
