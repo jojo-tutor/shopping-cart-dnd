@@ -47,7 +47,7 @@ module.exports = baseConfig({
       })
     ],
     splitChunks: {
-      chunks: 'initial'
+      chunks: 'all'
     },
     runtimeChunk: {
       name: 'manifest'
@@ -76,8 +76,8 @@ module.exports = baseConfig({
       dry: false
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:8].css',
-      chunkFilename: 'css/[name].[contenthash:8].chunk.css'
+      filename: 'css/[name].[contenthash:8].min.css',
+      chunkFilename: 'css/[name].[contenthash:8].chunk.min.css'
     }),
     new CompressionPlugin({
       algorithm: 'gzip',
