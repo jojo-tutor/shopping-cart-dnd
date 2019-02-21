@@ -12,6 +12,14 @@ const result = baseConfig({
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+    runtimeChunk: {
+      name: 'manifest'
+    },
+  },
   devServer: {
     open: true,
     port: process.env.PORT,
