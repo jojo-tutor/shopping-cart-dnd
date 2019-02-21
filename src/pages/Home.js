@@ -86,7 +86,9 @@ class Home extends PureComponent {
     }))
   }
 
-  formatProducts = (products) => Object.entries(products).reduce((acc, [key, value]) => ([...acc, value]), [])
+  formatProducts = (products) => Object
+    .entries(products)
+    .reduce((acc, [key, value]) => ([...acc, value]), [])
 
   formatOrderItems(cartListWithProduct) {
     return cartListWithProduct.reduce((acc, curr) => {
@@ -140,7 +142,8 @@ class Home extends PureComponent {
     toast.success(
       <ToastContent>
         {() => <div>Product(s) successfully bought!</div>}
-      </ToastContent>, {
+      </ToastContent>,
+      {
         hideProgressBar: true,
         position: 'top-center'
       }
