@@ -1,0 +1,52 @@
+html .Toastify {
+	// .Toastify__toast
+	&__toast {
+		padding: .5em 1em .75em 1em;
+		font-size: 1em;
+		overflow: visible;
+
+		// .Toastify__toast-container
+		&-container {
+			width: 20em;
+		}
+
+		// .Toastify__toast-body
+		&-body {
+			font-family: $font-family;
+			font-size: 1em;
+			color: $text-color;
+			line-height: 1.5;
+
+			.info {
+				font-weight: 500;
+				color: darken($primary-color, 40%);
+			}
+			.time-ago {
+				font-size: .75em;
+				font-style: italic;
+			}
+		}
+
+		// .Toastify__toast--default
+		&--default {
+			border-radius: .25em;
+		}
+
+		// .Toastify__toast--success
+		&--success {
+			padding: .5em 1em;
+			background-color: $success-color;
+			.Toastify__toast-body {
+				color: $white;
+			}
+		}
+	}
+
+	// .Toastify__progress-bar
+	&__progress-bar {
+		// .Toastify__progress-bar--default
+		&--default {
+			background:linear-gradient( 90deg, $primary-color, $tertiary-color);
+		}
+	}
+}
