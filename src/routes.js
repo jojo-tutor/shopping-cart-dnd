@@ -7,7 +7,6 @@ const Home = loadable(() => import('./pages/Home'))
 const About = loadable(() => import('./pages/About'))
 const NotFound = loadable(() => import('./pages/NotFound'))
 
-
 export default  [
   {
     component: Login,

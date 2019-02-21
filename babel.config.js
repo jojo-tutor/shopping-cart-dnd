@@ -1,7 +1,7 @@
 module.exports = {
   presets: [
     '@babel/preset-env',
-    '@babel/preset-react'
+    '@babel/preset-react',
   ],
   plugins: [
     '@babel/plugin-proposal-class-properties',
@@ -9,11 +9,11 @@ module.exports = {
     'react-hot-loader/babel',
     ['@babel/plugin-transform-runtime',
       {
-        corejs:  false,
-        helpers:  true,
-        regenerator:  true,
+        corejs: false,
+        helpers: true,
+        regenerator: true,
         useESModules: true,
-      }
-    ]
-  ]
-}
+      },
+    ],
+  ],
+};
