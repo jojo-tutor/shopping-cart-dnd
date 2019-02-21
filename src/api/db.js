@@ -6,6 +6,9 @@ export const createDocument = (collection, { id, ...data }) =>
 export const getDocumentUpdates = (collection, callback) =>
   db.ref(collection).on('value', callback)
 
+export const getDocumentChildUpdates = (collection, callback) =>
+  db.ref(collection).limitToLast(1).on('child_added', callback)
+
 export const onceGetDocuments = (collection) =>
   db.ref(collection).once('value').then(snapshot => snapshot.val())
 

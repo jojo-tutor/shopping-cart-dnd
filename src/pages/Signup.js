@@ -1,9 +1,28 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
+import Form from '../components/Form'
+import Logo from '../components/Form/Logo'
+import Preloader from '../components/Form/Preloader'
+import Error from '../components/Form/Error'
+import HeaderTitle from '../components/Form/HeaderTitle'
+import FooterLink from '../components/Form/FooterLink'
 import { auth, db } from '../api'
 import 'scss/auth/index.scss'
 
-export default class Signup extends React.Component {
+const formList = [
+  {
+    id: 'email'
+  },
+  {
+    id: 'password'
+  },
+  {
+    id: 'confirmPassword',
+    type: 'password'
+  }
+]
+
+class Signup extends PureComponent {
   state = {
     error: '',
     isProcessing: false,
@@ -44,78 +63,28 @@ export default class Signup extends React.Component {
 
   render() {
     const { fieldValues, isProcessing, error } = this.state
+  
     return (
-      <div className='auth'>
-        <div className="auth_logo">
-          <img src="/images/logo.png" alt=""/>
-        </div>
-        <div className='auth_paper'>
-
-          { error && (
-            <div className="auth_error">
-              <p>{ error }</p>
-            </div>
-          )}
-
-          { isProcessing && (
-            <div className='auth_progressLoader'>
-              <div className="loader">
-                <hr/><hr/><hr/><hr/>
-              </div>
-              <h1>authenticating</h1>
-            </div>
-          )}
-
-          <h1 className='auth_header'>
-            Signup
-          </h1>
-          <form 
-            className='auth_form' 
-            onSubmit={this.handleSubmit}>
-            <div className='field'>
-              <label htmlFor='email'>Email</label>
-              <input
-                required
-                id='email'
-                type='email'
-                name='email'
-                value={fieldValues.email}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className='field'>
-              <label htmlFor='password'>Password</label>
-              <input
-                required
-                id='password'
-                type='password'
-                name='password'
-                value={fieldValues.password}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className='field'>
-              <label htmlFor='confirmPassword'>Confirm Password</label>
-              <input
-                required
-                id='confirmPassword'
-                type='password'
-                name='confirmPassword'
-                value={fieldValues.confirmPassword}
-                onChange={this.handleChange}
-              />
-            </div>
-            <input
-              className='btn btn-primary'
-              type='submit'
-              value='Register'
-            />
-          </form>
-          <p className='auth_extras'>
-            <Link to='/login'>Already have an account</Link>
-          </p>
-        </div>
-      </div>
+      <Form
+        name='signup'
+        error={error}
+        formList={formList}
+        fieldValues={fieldValues}
+        isProcessing={isProcessing}
+        preloaderLabel='Signing up...'
+        headerTitleLabel='Signup'
+        submitButtonLabel='Register'
+        footerLinkTo='/login'
+        footerLinkLabel='Already have an account?'
+        onChange={this.handleChange}
+        onSubmit={this.handleSubmit}
+      />
     )
   }
 }
+
+Signup.propTypes = {
+  history: PropTypes.object.isRequired
+}
+
+export default Signup
