@@ -31,8 +31,8 @@ const Form = (props) => {
     <div className={className}>
       <Logo />
       <div className='auth_paper'>
-        { error && <Error label={error} /> }
-        { isProcessing && <Preloader label={preloaderLabel} /> }
+        <Error visible={!!error} label={error} /> 
+        <Preloader visible={isProcessing} label={preloaderLabel} />
         <HeaderTitle label={headerTitleLabel} />
         <form 
           name={name}
