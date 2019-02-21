@@ -18,6 +18,6 @@ deploy:
     variables: 
       REPLICAS: 3
     script: 
-      - "docker -H $DOCKER_HOST service update $DOCKER_SERVICE_NAME --replicas $REPLICAS --image $REGISTRY_ADDRESS/$CI_PROJECT_NAME:$CI_COMMIT_REF_NAME-$CI_PIPELINE_ID --with-registry-auth --force"
+      - "docker -H $DOCKER_HOST service update $DOCKER_SERVICE_NAME --replicas $REPLICAS --image $REGISTRY_ADDRESS/$CI_PROJECT_NAME:$CI_COMMIT_REF_NAME-$CI_PIPELINE_ID --with-registry-auth --force --update-failure-action continue"
     only:
       - "master"
