@@ -49,7 +49,7 @@ class Home extends PureComponent {
     this.productListener
       .getPromise()
       .then((products) => {
-        const productList = this.formatProducts(products)
+        const productList = this.shapeProducts(products)
         this.setState({ productList })
       })
       .catch(error => {
@@ -92,7 +92,7 @@ class Home extends PureComponent {
     }
   }
 
-  getCartProduct = () => {
+  getCartWithProduct = () => {
     const { cartList, productList } = this.state
     return cartList.map(cart => ({
       ...cart,
@@ -100,11 +100,11 @@ class Home extends PureComponent {
     }))
   }
 
-  formatProducts = (products) => Object
+  shapeProducts = (products) => Object
     .entries(products)
     .reduce((acc, [key, value]) => ([...acc, value]), [])
 
-  formatOrderItems(cartListWithProduct) {
+  shapeOrderItems(cartListWithProduct) {
     return cartListWithProduct.reduce((acc, curr) => {
       const { productId, quantity, product = {} } = curr
       const price = Number(quantity) * Number(product.price)
@@ -135,15 +135,15 @@ class Home extends PureComponent {
     const { productList, cartList } = this.state
 
     const getOrderItems = flow([
-      this.getCartProduct,
-      this.formatOrderItems
+      this.getCartWithProduct,
+      this.shapeOrderItems
     ])
 
     this.createOrder({
       id: uuidv1(),
       email: session.email,
       date: new Date().toISOString(),
-      items: getOrderItems()
+      items: this.getOrderItems()
     }).then(() => {
       this.setState({ cartList: [] })
       this.showOrderCreatedToast()
@@ -152,8 +152,6 @@ class Home extends PureComponent {
       console.log(error)
     })
   }
-
-  getOrderCreateContent = () => <div>Product(s) successfully bought!</div>
 
   showOrderCreatedToast() {
     toast.success(
@@ -193,7 +191,7 @@ class Home extends PureComponent {
           onAddCartItem={this.handleAddCartItem}
         />
         <Cart
-          cartList={this.getCartProduct()}
+          cartList={this.getCartWithProduct()}
           onQuantityChange={this.handleQuantityChange}
           onBuyProduct={this.handleBuyProduct}
           onAddCartItem={this.handleAddCartItem}
@@ -208,6 +206,5 @@ class Home extends PureComponent {
 Home.propTypes = {
   session: PropTypes.object.isRequired
 }
-
 
 export default withDnDContext(Home)
