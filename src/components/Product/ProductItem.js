@@ -32,7 +32,7 @@ const ProductItem = (props) => {
             imageSource={imageSource}
             imageAlt={title}
           />
-          { isDiscounted && <SaleBadge />}
+          <SaleBadge visible={isDiscounted} />
           <ContentInfo
             {...product}
             isDiscounted={isDiscounted}

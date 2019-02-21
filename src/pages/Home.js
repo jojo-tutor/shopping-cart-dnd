@@ -10,8 +10,19 @@ import Toast from '../components/Toast'
 import ToastContent from '../components/Toast/ToastContent'
 import OrderMessage from '../components/Toast/OrderMessage'
 import withDnDContext from '../components/DnD/withDnDContext'
-import { onceGetDocuments, getDocumentChildUpdates, createDocument } from '../api/db'
-import { makeCancelable, updateListItem, getOrderTotalPrice, getOrderTotalCount, formatCurrency } from '../utils/tools'
+import {
+  onceGetDocuments
+  , createDocument
+  , getDocumentChildUpdates
+} from '../api/db'
+import {
+  makeCancelable
+  , formatCurrency
+  , updateListItem
+  , getOrderTotalPrice
+  , getOrderTotalCount
+} from '../utils/tools'
+
 import 'react-toastify/dist/ReactToastify.min.css'
 
 class Home extends PureComponent {
@@ -38,10 +49,13 @@ class Home extends PureComponent {
     this.productListener
       .getPromise()
       .then((products) => {
-        const productList = this.formatProducts(products)
+        const productList = this.shapeProducts(products)
         this.setState({ productList })
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        // --- TODO: do something, maybe show toast ---
+        console.log(error)
+      })
   }
 
   subscribeOrder() {
@@ -78,7 +92,7 @@ class Home extends PureComponent {
     }
   }
 
-  getCartProduct = () => {
+  getCartWithProduct = () => {
     const { cartList, productList } = this.state
     return cartList.map(cart => ({
       ...cart,
@@ -86,11 +100,11 @@ class Home extends PureComponent {
     }))
   }
 
-  formatProducts = (products) => Object
+  shapeProducts = (products) => Object
     .entries(products)
     .reduce((acc, [key, value]) => ([...acc, value]), [])
 
-  formatOrderItems(cartListWithProduct) {
+  shapeOrderItems(cartListWithProduct) {
     return cartListWithProduct.reduce((acc, curr) => {
       const { productId, quantity, product = {} } = curr
       const price = Number(quantity) * Number(product.price)
@@ -121,8 +135,8 @@ class Home extends PureComponent {
     const { productList, cartList } = this.state
 
     const getOrderItems = flow([
-      this.getCartProduct,
-      this.formatOrderItems
+      this.getCartWithProduct,
+      this.shapeOrderItems
     ])
 
     this.createOrder({
@@ -133,10 +147,11 @@ class Home extends PureComponent {
     }).then(() => {
       this.setState({ cartList: [] })
       this.showOrderCreatedToast()
+    }).catch((error) => {
+      // --- TODO: do something, maybe show toast ---
+      console.log(error)
     })
   }
-
-  getOrderCreateContent = () => <div>Product(s) successfully bought!</div>
 
   showOrderCreatedToast() {
     toast.success(
@@ -176,7 +191,7 @@ class Home extends PureComponent {
           onAddCartItem={this.handleAddCartItem}
         />
         <Cart
-          cartList={this.getCartProduct()}
+          cartList={this.getCartWithProduct()}
           onQuantityChange={this.handleQuantityChange}
           onBuyProduct={this.handleBuyProduct}
           onAddCartItem={this.handleAddCartItem}
@@ -191,6 +206,5 @@ class Home extends PureComponent {
 Home.propTypes = {
   session: PropTypes.object.isRequired
 }
-
 
 export default withDnDContext(Home)
