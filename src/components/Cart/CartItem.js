@@ -66,8 +66,6 @@ const CartItem = (props) => {
           remove item
         </button> 
       </div>
- 
-
     </div>
   )
 }

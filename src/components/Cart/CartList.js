@@ -24,7 +24,7 @@ const CartList = (props) => {
   return (
     <DropTarget onDrop={droppedProduct => onAddCartItem(droppedProduct.id)}>
       {({ sourceItem, isOver }) => (
-        <div className={cn('cart_list',{'cart_list-dropping': isOver})}>
+        <div className={cn('cart_list', { 'cart_list-dropping': isOver })}>
         	{(isOver && sourceItem) && renderDropProductPreview(sourceItem)}
           {carts.map(cart => (
             <CartItem
