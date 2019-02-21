@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 import cn from 'classnames'
+import Form from '../components/Form'
 import { auth } from '../api'
 import 'scss/auth/index.scss'
 
-export default class Login extends React.Component {
+const formList = [
+  {
+    id: 'email'
+  },
+  {
+    id: 'password'
+  }
+]
+
+class Login extends PureComponent {
   state = {
     error: '',
     isProcessing: false,
@@ -59,72 +70,28 @@ export default class Login extends React.Component {
     }
 
     return (
-      <div className={cn('auth',{'auth-processing': isProcessing }) }>
-        <div className="auth_logo">
-          <img src="/images/logo.png" alt=""/>
-        </div>
-        <div className='auth_paper'>
-
-          { error && (
-            <div className="auth_error">
-              <p>{ error }</p>
-            </div>
-          )}
-
-          { isProcessing && (
-            <div className='auth_progressLoader'>
-              <div className="loader">
-                <hr/><hr/><hr/><hr/>
-              </div>
-              <h1>authenticating</h1>
-            </div>
-          )}
-
-          <h1 className='auth_header'>
-            Login
-          </h1>
-          <form 
-            className='auth_form' 
-            onSubmit={this.handleSubmit}>
-            <div className='field'>
-              <label htmlFor='email'>Email</label>
-              <input
-                required
-                id='email'
-                type='email'
-                name='email'
-                value={fieldValues.email}
-                onChange={this.handleChange}
-              />
-            </div>
-            <div className='field'>
-              <label htmlFor='password'>Password</label>
-              <input
-                required
-                id='password'
-                type='password'
-                name='password'
-                value={fieldValues.password}
-                onChange={this.handleChange}
-              />
-            </div>
-            <input
-              type='submit'
-              value='Submit'
-              disabled={isProcessing}
-              className={cn('btn btn-primary', { processing: isProcessing })}
-            />
-          </form>
-
-          <p className='auth_extras'>
-            <Link
-              to='/signup'
-              className='noAccount'>
-              I don't have an account
-            </Link>
-          </p>
-        </div>
-      </div>
+      <Form
+        name='login'
+        error={error}
+        formList={formList}
+        fieldValues={fieldValues}
+        isProcessing={isProcessing}
+        preloaderLabel='Logging in...'
+        headerTitleLabel='Login'
+        submitButtonLabel='Login'
+        footerLinkTo='/signup'
+        footerLinkLabel={`I don't have an account.`}
+        onChange={this.handleChange}
+        onSubmit={this.handleSubmit}
+      />
     )
   }
 }
+
+Login.propTypes = {
+  session: PropTypes.object,
+  history: PropTypes.object.isRequired,
+  registerUserSession: PropTypes.func.isRequired
+}
+
+export default Login

@@ -1,61 +1,55 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import cn from 'classnames'
 import Counter from './Counter'
 import QuickTip from './QuickTip'
 import CartList from './CartList'
 import Total from './Total'
-import { formatCurrency } from '../../utils/tools'
-
+import { formatCurrency, getCartTotalCount, getCartTotalPrice } from '../../utils/tools'
 import 'scss/cart/index.scss'
-
-const numberFormat = {
-  locale: 'en-ph',
-  options: {
-    style: 'currency',
-    currency: 'Php'
-  }
-}
-
-const getTotal = (list) => {
-  const total = list.reduce((acc, curr) => {
-    const { quantity, product = {} } = curr
-    return acc + (Number(quantity) * Number(product.price))
-  }, 0)
-
-  return formatCurrency(total)
-}
-
-const getItems = (list) => {
-  return list.reduce((acc, curr) => {
-    const { quantity, product = {} } = curr
-    return acc + Number(quantity)
-  }, 0)
-}
 
 const Cart = (props) => {
   const { 
-    list
+    cartList
     , className
     , onQuantityChange
+    , onBuyProduct
     , onAddCartItem
     , onRemoveCartItem 
   } = props
     
   return (
     <div className={cn('cart', className)}>
-      <Counter count={getItems(list)} />
+      <Counter count={getCartTotalCount(cartList)} />
       <QuickTip />
       <div className='cart_listContainer'>
         <CartList
-          list={list}
+          carts={cartList}
           onQuantityChange={onQuantityChange}
           onAddCartItem={onAddCartItem}
           onRemoveCartItem={onRemoveCartItem}
         />
       </div>
-      <Total total={getTotal(list)} />
+      <Total total={getCartTotalPrice(cartList)} />
+      <input
+        type='button'
+        value='Buy it now!'
+        onClick={onBuyProduct}
+        disabled={!cartList.length}
+        className='btn btn-primary'
+      />
     </div>
   )
+}
+
+Cart.defaultProps = {
+  className: 'col col-md-3 col-sm-4'
+}
+
+Cart.propTypes = {
+  className: PropTypes.string,
+  onBuyProduct: PropTypes.func.isRequired,
+  cartList: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default Cart

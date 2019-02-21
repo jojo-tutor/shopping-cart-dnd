@@ -1,13 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types' 
 import ProductList from './ProductList'
 import Image from '../Image'
 import '../../scss/product/index.scss'
 
 const Product = (props) => {
   const { 
-    productList
-    , productHero
-    , className
+    className
+    , productList
     , onAddCartItem
   } = props
 
@@ -28,6 +28,16 @@ const Product = (props) => {
       />
     </div>
   )
+}
+
+Product.defaultProps = {
+  className: 'col col-md-9 col-sm-8'
+}
+
+Product.propTypes = {
+  className: PropTypes.string,
+  onAddCartItem: PropTypes.func.isRequired,
+  productList: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default Product

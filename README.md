@@ -8,12 +8,9 @@ A simple shopping cart with drag & drop functionality.
 ## About
 This app is prepared for CebuJS Meetup.
 
-## Demonstration
-CodePen:
- > https://codepen.io/jojo-tutor/pen/GxOemZ
-
-Herokuapp:
- > https://hoc-error-boundary.herokuapp.com
+## Playground
+CodeSandbox:
+ > https://github.com/jojo-tutor/shopping-cart-dnd
 
 ## Run on Local
 ```sh
@@ -23,9 +20,11 @@ yarn && yarn dev
 ```
 
 ## Authors
-**Jojo E. Tutor**
+[Jojo E. Tutor](https://www.facebook.com/jojo-tutor "View Jojo's FB Profile")
+[Jasper Bernales](https://www.facebook.com/bernales95 "View Jasper's FB Profile")
+[Jose Adrian Buctuanon](https://www.facebook.com/milkymura "View Jab's FB Profile")
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the GNU GENERAL PUBLIC LICENSE - see the [LICENSE](LICENSE) file for details
 
 Enjoy :)
