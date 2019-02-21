@@ -143,7 +143,7 @@ class Home extends PureComponent {
       id: uuidv1(),
       email: session.email,
       date: new Date().toISOString(),
-      items: this.getOrderItems()
+      items: getOrderItems()
     }).then(() => {
       this.setState({ cartList: [] })
       this.showOrderCreatedToast()
