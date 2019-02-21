@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types' 
 
-const Preloader = ({ label }) => (
+const Preloader = ({ visible, label }) => visible && (
   <div className='auth_progressLoader'>
     <div className='loader'>
       <hr/><hr/><hr/><hr/>
@@ -11,6 +11,7 @@ const Preloader = ({ label }) => (
 )
 
 Preloader.propTypes = {
+  visible: PropTypes.bool,
   label: PropTypes.string.isRequired
 }
 
