@@ -36,7 +36,7 @@ class Home extends PureComponent {
   subscribeProduct() {
     this.productListener = makeCancelable(onceGetDocuments('/products'))
     this.productListener
-      .promise
+      .getPromise()
       .then((products) => {
         const productList = this.formatProducts(products)
         this.setState({ productList })
