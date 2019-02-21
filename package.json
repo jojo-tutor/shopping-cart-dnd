@@ -24,6 +24,8 @@
     "react-image": "^2.0.0",
     "react-router-config": "^4.4.0-beta.1",
     "react-router-dom": "^4.3.1",
+    "react-timeago": "^4.4.0",
+    "react-toastify": "^4.5.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

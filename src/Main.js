@@ -34,7 +34,7 @@ const renderAuthenticatedPage = (props) => {
         handleSignOut={auth.doSignOut}
         navigationList={navigationList}
       />
-      {renderRoutes(route.routes)}
+      {renderRoutes(route.routes, { session })}
     </>
   )
 }

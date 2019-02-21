@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CartList from './CartList'
 
-const Total = ({ total }) => (
+const Total = ({ label, total }) => (
   <div className='cart_grandtotal'>
     <h3 className='label'>
-      Total
+      { label }
     </h3>
     <h2 className='value'>
       { total }
@@ -13,7 +13,12 @@ const Total = ({ total }) => (
   </div>
 )
 
+Total.defaultProps = {
+  label: 'Total'
+}
+
 Total.propTypes = {
+  label: PropTypes.string,
   total: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string
