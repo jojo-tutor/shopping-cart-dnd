@@ -17,7 +17,10 @@ body {
 	width: 100%;
 }
 
-.nav + .shop {
+.nav + .page {
 	margin-top: $nav-height;
 }
 
+.page {
+	min-height: calc( 100vh - #{$nav-height});
+}

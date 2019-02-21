@@ -1,24 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types' 
 import { NavLink, Link } from 'react-router-dom'
 import Image from '../Image'
 import NavigationList from './NavigationList'
 
-const navigationList = [
-  {
-    value: '/',
-    label: 'Home'
-  },
-  {
-    value: '/about',
-    label: 'About'
-  }
-]
-
 const Navigation = (props) => {
   const {
     session
-    , signOut
     , location
+    , navigationList
+    , handleSignOut
   } = props
 
   const isLinkActive = (pathname) => () => pathname === location.pathname
@@ -43,19 +34,30 @@ const Navigation = (props) => {
       <div className='nav_userActions'>
         { session.email && (
           <div className="nav_session">
-            welcome back, 
-            <span className="email"> { session.email } </span>
+            <span className="welcome_text">
+              Welcome, &nbsp;
+            </span>
+            <span className="email">
+              { session.email }
+            </span>
           </div>
         )}
         <button
           className='btn btn-inverted-red nav_logout'
-          onClick={signOut}>
+          onClick={handleSignOut}>
           Sign Out
         </button>
       </div>
 
     </nav>
   )
+}
+
+Navigation.propTypes = {
+  session: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  handleSignOut: PropTypes.func.isRequired,
+  navigationList: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default Navigation
