@@ -10,8 +10,19 @@ import Toast from '../components/Toast'
 import ToastContent from '../components/Toast/ToastContent'
 import OrderMessage from '../components/Toast/OrderMessage'
 import withDnDContext from '../components/DnD/withDnDContext'
-import { onceGetDocuments, getDocumentChildUpdates, createDocument } from '../api/db'
-import { makeCancelable, updateListItem, getOrderTotalPrice, getOrderTotalCount, formatCurrency } from '../utils/tools'
+import {
+  onceGetDocuments
+  , createDocument
+  , getDocumentChildUpdates
+} from '../api/db'
+import {
+  makeCancelable
+  , formatCurrency
+  , updateListItem
+  , getOrderTotalPrice
+  , getOrderTotalCount
+} from '../utils/tools'
+
 import 'react-toastify/dist/ReactToastify.min.css'
 
 class Home extends PureComponent {
@@ -41,7 +52,10 @@ class Home extends PureComponent {
         const productList = this.formatProducts(products)
         this.setState({ productList })
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        // --- TODO: do something, maybe show toast ---
+        console.log(error)
+      })
   }
 
   subscribeOrder() {
@@ -133,6 +147,9 @@ class Home extends PureComponent {
     }).then(() => {
       this.setState({ cartList: [] })
       this.showOrderCreatedToast()
+    }).catch((error) => {
+      // --- TODO: do something, maybe show toast ---
+      console.log(error)
     })
   }
 
