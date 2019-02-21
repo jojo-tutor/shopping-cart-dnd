@@ -39,7 +39,7 @@ const developers = [
   {
     name: 'Jose Adrian Buctuanon',
     position: 'Front End Developer',
-    img: '/images/jasper.jpg',
+    img: '/images/jab.jpg',
     company: 'DNAMICRO',
     links: {
       github: '',
