@@ -11,7 +11,7 @@ export const makeCancelable = (promise) => {
   })
 
   return {
-    promise: wrappedPromise,
+    getPromise: () => wrappedPromise,
     cancel() {
       hasCanceled = true
     },
