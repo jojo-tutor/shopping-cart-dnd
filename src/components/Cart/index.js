@@ -36,7 +36,7 @@ const Cart = (props) => {
         value='Buy it now!'
         onClick={onBuyProduct}
         disabled={!cartList.length}
-        className='btn btn-primary'
+        className='btn btn-primary cart_buynow'
       />
     </div>
   )
