@@ -19,7 +19,7 @@ WORKDIR /var/app
 COPY ./package.json  /var/app/
 RUN npm install --production --silent
 RUN mkdir -p views public
-COPY ./public /var/app/
+COPY ./public /var/app/public
 COPY --from=builder /var/app/public /var/app/public
 COPY --from=builder /var/app/server.js /var/app/server.js
 CMD pm2-runtime server.js
