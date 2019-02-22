@@ -37,12 +37,47 @@ class Home extends PureComponent {
     this.unsubscribeListeners();
   }
 
-  subscribeListeners() {
-    this.subscribeProduct();
-    this.subscribeOrder();
+  shapeProducts = products => Object
+    .entries(products)
+    .reduce((acc, [key, value]) => ([...acc, value]), []) // eslint-disable-line
+
+  shapeOrderItems = cartListWithProduct => cartListWithProduct.reduce((acc, curr) => {
+    const { productId, quantity, product = {} } = curr;
+    const price = Number(quantity) * Number(product.price);
+    return [...acc, {
+      id: uuidv1(), productId, quantity, price,
+    }];
+  }, [])
+
+  showOrderFeedsToast = (order) => {
+    const { email, date, items } = order;
+    const price = getOrderTotalPrice(items);
+    const total = getOrderTotalCount(items);
+    toast(
+      <ToastContent
+        email={email}
+        date={date}
+        price={price}
+        total={total}
+      >
+        {childProps => <OrderMessage {...childProps} />}
+      </ToastContent>,
+    );
   }
 
-  subscribeProduct() {
+  showOrderCreatedToast = () => {
+    toast.success(
+      <ToastContent>
+        {() => <div>Product(s) successfully bought!</div>}
+      </ToastContent>,
+      {
+        hideProgressBar: true,
+        position: 'top-center',
+      },
+    );
+  }
+
+  subscribeProduct() { // eslint-disable-line react/sort-comp
     this.productListener = makeCancelable(onceGetDocuments('/products'));
     this.productListener
       .getPromise()
@@ -50,10 +85,7 @@ class Home extends PureComponent {
         const productList = this.shapeProducts(products);
         this.setState({ productList });
       })
-      .catch((error) => {
-        // --- TODO: do something, maybe show toast ---
-        console.log(error);
-      });
+      .catch(this.throwError);
   }
 
   subscribeOrder() {
@@ -66,13 +98,22 @@ class Home extends PureComponent {
     });
   }
 
+  subscribeListeners() {
+    this.subscribeProduct();
+    this.subscribeOrder();
+  }
+
   unsubscribeListeners() {
     this.productListener.cancel();
   }
 
+  throwError = () => {
+    // --- TODO: do something, like call api logger & show toast ---
+  }
+
   createOrder = order => createDocument('/orders', order)
 
-  upsertCart(cartList, productId) {
+  upsertCart = (cartList, productId) => {
     const productExists = cartList.some(e => e.productId === productId);
     if (productExists) {
       return {
@@ -98,20 +139,6 @@ class Home extends PureComponent {
     }));
   }
 
-  shapeProducts = products => Object
-    .entries(products)
-    .reduce((acc, [key, value]) => ([...acc, value]), [])
-
-  shapeOrderItems(cartListWithProduct) {
-    return cartListWithProduct.reduce((acc, curr) => {
-      const { productId, quantity, product = {} } = curr;
-      const price = Number(quantity) * Number(product.price);
-      return [...acc, {
-        id: uuidv1(), productId, quantity, price,
-      }];
-    }, []);
-  }
-
   handleQuantityChange = (quantity, cartItemId) => {
     this.setState(({ cartList }) => ({
       cartList: updateListItem(
@@ -132,7 +159,6 @@ class Home extends PureComponent {
 
   handleBuyProduct = () => {
     const { session } = this.props;
-    const { productList, cartList } = this.state;
 
     const getOrderItems = flow([
       this.getCartWithProduct,
@@ -147,38 +173,7 @@ class Home extends PureComponent {
     }).then(() => {
       this.setState({ cartList: [] });
       this.showOrderCreatedToast();
-    }).catch((error) => {
-      // --- TODO: do something, maybe show toast ---
-      console.log(error);
-    });
-  }
-
-  showOrderCreatedToast() {
-    toast.success(
-      <ToastContent>
-        {() => <div>Product(s) successfully bought!</div>}
-      </ToastContent>,
-      {
-        hideProgressBar: true,
-        position: 'top-center',
-      },
-    );
-  }
-
-  showOrderFeedsToast(order) {
-    const { email, date, items } = order;
-    const price = getOrderTotalPrice(items);
-    const total = getOrderTotalCount(items);
-    toast(
-      <ToastContent
-        email={email}
-        date={date}
-        price={price}
-        total={total}
-      >
-        {childProps => <OrderMessage {...childProps} />}
-      </ToastContent>,
-    );
+    }).catch(this.throwError);
   }
 
   render() {

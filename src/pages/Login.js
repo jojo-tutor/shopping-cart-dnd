@@ -33,7 +33,7 @@ class Login extends PureComponent {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ isProcessing: true }, () => {
-      this.doLogin(this.state.fieldValues);
+      this.doLogin(this.state.fieldValues); // eslint-disable-line
     });
   }
 
