@@ -1,24 +1,24 @@
-import loadable from '@loadable/component'
+import loadable from '@loadable/component';
 
-const Login = loadable(() => import('./pages/Login'))
-const Signup = loadable(() => import('./pages/Signup'))
-const Main = loadable(() => import('./Main'))
-const Home = loadable(() => import('./pages/Home'))
-const About = loadable(() => import('./pages/About'))
-const NotFound = loadable(() => import('./pages/NotFound'))
+const Login = loadable(() => import('./pages/Login'));
+const Signup = loadable(() => import('./pages/Signup'));
+const Main = loadable(() => import('./Main'));
+const Home = loadable(() => import('./pages/Home'));
+const About = loadable(() => import('./pages/About'));
+const NotFound = loadable(() => import('./pages/NotFound'));
 
-export default  [
+export default [
   {
     component: Login,
     key: 'app-login',
     path: '/login',
-    exact: true
+    exact: true,
   },
   {
     key: 'app-signup',
     component: Signup,
     path: '/signup',
-    exact: true
+    exact: true,
   },
   {
     component: Main,
@@ -29,21 +29,21 @@ export default  [
         component: Home,
         path: '/',
         key: 'home',
-        exact: true
+        exact: true,
       },
       {
         component: About,
         path: '/about',
-        exact: true
+        exact: true,
       },
       {
         component: NotFound,
-        path: '*'
-      }
-    ]
+        path: '*',
+      },
+    ],
   },
   {
     component: NotFound,
-    path: '*'
-  }
-]
+    path: '*',
+  },
+];

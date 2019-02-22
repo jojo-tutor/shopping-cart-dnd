@@ -1,15 +1,15 @@
-import React from 'react'
-import PropTypes from 'prop-types' 
-import NavigationItem from './NavigationItem'
+import React from 'react';
+import PropTypes from 'prop-types';
+import NavigationItem from './NavigationItem';
 
 const NavigationList = (props) => {
   const {
-    navigations
-    , isLinkActive
-  } = props
+    navigations,
+    isLinkActive,
+  } = props;
 
   return (
-    <div className='nav_links'>
+    <div className="nav_links">
       {navigations.map(navigationItem => (
         <NavigationItem
           key={navigationItem.value}
@@ -18,12 +18,12 @@ const NavigationList = (props) => {
         />
       ))}
     </div>
-  )
-}
+  );
+};
 
 NavigationList.propTypes = {
   isLinkActive: PropTypes.func.isRequired,
-  navigations: PropTypes.arrayOf(PropTypes.object).isRequired
-}
+  navigations: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
-export default NavigationList
+export default NavigationList;

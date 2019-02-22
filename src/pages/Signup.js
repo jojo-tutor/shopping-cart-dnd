@@ -1,26 +1,21 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import Form from '../components/Form'
-import Logo from '../components/Form/Logo'
-import Preloader from '../components/Form/Preloader'
-import Error from '../components/Form/Error'
-import HeaderTitle from '../components/Form/HeaderTitle'
-import FooterLink from '../components/Form/FooterLink'
-import { auth, db } from '../api'
-import 'scss/auth/index.scss'
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import Form from '../components/Form';
+import { auth, db } from '../api';
+import 'scss/auth/index.scss';
 
 const formList = [
   {
-    id: 'email'
+    id: 'email',
   },
   {
-    id: 'password'
+    id: 'password',
   },
   {
     id: 'confirmPassword',
-    type: 'password'
-  }
-]
+    type: 'password',
+  },
+];
 
 class Signup extends PureComponent {
   state = {
@@ -29,62 +24,65 @@ class Signup extends PureComponent {
     fieldValues: {
       email: '',
       password: '',
-      confirmPassword: ''
-    }
+      confirmPassword: '',
+    },
   }
 
   handleChange = (e) => {
-    e.preventDefault()
-    const { id, value } = e.target
-    this.setState(({ fieldValues }) =>
-      ({ fieldValues: { ...fieldValues, [id]: value } }))
+    e.preventDefault();
+    const { id, value } = e.target;
+    this.setState(({ fieldValues }) => ({ fieldValues: { ...fieldValues, [id]: value } }));
   }
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     this.setState({ isProcessing: true }, () => {
-      this.doSignup(this.state.fieldValues)
-    })
+      this.doSignup(this.state.fieldValues); // eslint-disable-line
+    });
   }
 
   doSignup = async (data) => {
     try {
-      const { email, password } = data
-      const { user } = await auth.doCreateUserWithEmailAndPassword({ email, password })
-      await db.createDocument('users', { ...data, id: user.uuid })
-      this.props.history.push('/')
-    } catch({ message: error }) {
+      const { email, password } = data;
+      const { user } = await auth.doCreateUserWithEmailAndPassword({ email, password });
+      await db.createDocument('users', { ...data, id: user.uuid });
+      this.props.history.push('/'); // eslint-disable-line
+    } catch ({ message: error }) {
       this.setState({
         error,
-        isProcessing: false
-      })
+        isProcessing: false,
+      });
     }
   }
 
   render() {
-    const { fieldValues, isProcessing, error } = this.state
-  
+    const {
+      error,
+      fieldValues,
+      isProcessing,
+    } = this.state;
+
     return (
       <Form
-        name='signup'
+        name="signup"
         error={error}
         formList={formList}
         fieldValues={fieldValues}
         isProcessing={isProcessing}
-        preloaderLabel='Signing up...'
-        headerTitleLabel='Signup'
-        submitButtonLabel='Register'
-        footerLinkTo='/login'
-        footerLinkLabel='Already have an account?'
+        preloaderLabel="Signing up..."
+        headerTitleLabel="Signup"
+        submitButtonLabel="Register"
+        footerLinkTo="/login"
+        footerLinkLabel="Already have an account?"
         onChange={this.handleChange}
         onSubmit={this.handleSubmit}
       />
-    )
+    );
   }
 }
 
 Signup.propTypes = {
-  history: PropTypes.object.isRequired
-}
+  history: PropTypes.object.isRequired,
+};
 
-export default Signup
+export default Signup;

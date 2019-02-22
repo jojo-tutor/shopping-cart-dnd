@@ -1,8 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types' 
-import { ToastContainer } from 'react-toastify'
+import React from 'react';
+import { ToastContainer } from 'react-toastify';
 
-const Toast = (props) => (
+const Toast = props => (
   <ToastContainer
     draggable
     newestOnTop
@@ -12,9 +11,9 @@ const Toast = (props) => (
     rtl={false}
     autoClose={5000}
     hideProgressBar={false}
-    position='bottom-left'
+    position="bottom-left"
     {...props}
   />
-)
+);
 
-export default Toast
+export default Toast;

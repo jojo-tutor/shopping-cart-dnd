@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
-import { Link } from 'react-router-dom';
-import cn from 'classnames';
 import Form from '../components/Form';
 import { auth } from '../api';
 import 'scss/auth/index.scss';
@@ -35,7 +33,7 @@ class Login extends PureComponent {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ isProcessing: true }, () => {
-      this.doLogin(this.state.fieldValues);
+      this.doLogin(this.state.fieldValues); // eslint-disable-line
     });
   }
 
@@ -86,6 +84,10 @@ class Login extends PureComponent {
     );
   }
 }
+
+Login.defaultProps = {
+  session: null,
+};
 
 Login.propTypes = {
   session: PropTypes.object,

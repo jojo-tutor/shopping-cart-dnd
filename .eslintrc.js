@@ -1,5 +1,5 @@
 module.exports = {
-    parser: 'babel-eslint',
+    parser: "babel-eslint",
     "env": {
         "browser": true,
         "es6": true
@@ -20,5 +20,9 @@ module.exports = {
         "react"
     ],
     "rules": {
-    }
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/forbid-prop-types": [0, { "forbid": ["object"] }],
+        "no-param-reassign": 0
+    },
+    "settings": { "import/resolver": { "node": { "paths": ["src"] } } }
 };

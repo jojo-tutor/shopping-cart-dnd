@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types' 
-import FormField from './FormField'
+import React from 'react';
+import PropTypes from 'prop-types';
+import FormField from './FormField';
 
 const FormList = (props) => {
   const {
-    forms
-    , fieldValues
-    , ...restProps
-  } = props
+    forms,
+    fieldValues,
+    ...restProps
+  } = props;
 
   return forms.map(form => (
     <FormField
@@ -16,12 +16,12 @@ const FormList = (props) => {
       form={form}
       value={fieldValues[form.id]}
     />
-  ))
-}
+  ));
+};
 
 FormList.propTypes = {
   forms: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fieldValues: PropTypes.object.isRequired
-}
+  fieldValues: PropTypes.object.isRequired,
+};
 
-export default FormList
+export default FormList;

@@ -1,19 +1,13 @@
-import { db } from './firebase'
+import { db } from './firebase';
 
-export const createDocument = (collection, { id, ...data }) =>
-  db.ref(`${collection}`).push().set(data)
+export const createDocument = (collection, { id, ...data }) => db.ref(`${collection}`).push().set(data);
 
-export const getDocumentUpdates = (collection, callback) =>
-  db.ref(collection).on('value', callback)
+export const getDocumentUpdates = (collection, callback) => db.ref(collection).on('value', callback);
 
-export const getDocumentChildUpdates = (collection, callback) =>
-  db.ref(collection).limitToLast(1).on('child_added', callback)
+export const getDocumentChildUpdates = (collection, callback) => db.ref(collection).limitToLast(1).on('child_added', callback);
 
-export const onceGetDocuments = (collection) =>
-  db.ref(collection).once('value').then(snapshot => snapshot.val())
+export const onceGetDocuments = collection => db.ref(collection).once('value').then(snapshot => snapshot.val());
 
-export const updateDocument = (collection, { id, ...data }) =>
-  db.ref().child(`${collection}/${id}`).update(data)
+export const updateDocument = (collection, { id, ...data }) => db.ref().child(`${collection}/${id}`).update(data);
 
-export const deleteDocument = (collection, { id, ...data }) =>
-  db.ref(`${collection}/${id}`).remove()
+export const deleteDocument = (collection, { id }) => db.ref(`${collection}/${id}`).remove();

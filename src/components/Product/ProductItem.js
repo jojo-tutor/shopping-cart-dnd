@@ -1,33 +1,29 @@
-import React from 'react'
-import PropTypes from 'prop-types' 
-import DragSource from '../DnD/DragSource'
-import Image from '../Image'
-import CardImage from './CardImage'
-import SaleBadge from './SaleBadge'
-import ContentInfo from './ContentInfo'
+import React from 'react';
+import PropTypes from 'prop-types';
+import DragSource from '../DnD/DragSource';
+import CardImage from './CardImage';
+import SaleBadge from './SaleBadge';
+import ContentInfo from './ContentInfo';
 
 const ProductItem = (props) => {
   const {
-    product
-    , onAddCartItem
-  } = props
+    product,
+    onAddCartItem,
+  } = props;
 
   const {
-    id
-    , title
-    , price
-    , description
-    , imageSource
-    , compareAtPrice
-    , vendor
-  } = product
+    title,
+    price,
+    imageSource,
+    compareAtPrice,
+  } = product;
 
-  const isDiscounted = Number(compareAtPrice) > Number(price)
+  const isDiscounted = Number(compareAtPrice) > Number(price);
 
   return (
     <DragSource hideHandle dragItem={product}>
       {() => (
-        <div className='productCard product_list_item'>
+        <div className="productCard product_list_item">
           <CardImage
             imageSource={imageSource}
             imageAlt={title}
@@ -41,7 +37,12 @@ const ProductItem = (props) => {
         </div>
       )}
     </DragSource>
-  )
-}
+  );
+};
 
-export default ProductItem
+ProductItem.propTypes = {
+  product: PropTypes.object.isRequired,
+  onAddCartItem: PropTypes.func.isRequired,
+};
+
+export default ProductItem;
