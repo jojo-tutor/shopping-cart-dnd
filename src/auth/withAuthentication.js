@@ -10,8 +10,8 @@ export default function withAuthentication(Component) {
     }
 
     componentDidMount() {
-      this.authListener = firebase.auth.onAuthStateChanged((session) => {
-        this.setState({ session: session || null });
+      this.authListener = firebase.auth.onAuthStateChanged((session = null) => {
+        this.setState({ session });
       });
     }
 
