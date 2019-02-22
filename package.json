@@ -66,7 +66,6 @@
     "terser-webpack-plugin": "^1.2.2",
     "url-loader": "^1.1.2",
     "webpack": "^4.29.3",
-    "optimize-css-assets-webpack-plugin":"^5.0.1",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.2.1"
