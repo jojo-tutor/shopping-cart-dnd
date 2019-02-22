@@ -1,42 +1,42 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { DragSource } from 'react-dnd'
-import Types from './Types'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { DragSource } from 'react-dnd';
+import Types from './Types';
 
 const source = {
   beginDrag({ dragItem }) {
-    return dragItem
-  }
-}
+    return dragItem;
+  },
+};
 
 const collect = (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   connectDragPreview: connect.dragPreview(),
-  isDragging: monitor.isDragging()
-})
+  isDragging: monitor.isDragging(),
+});
 
 const DndSource = (props) => {
   const {
-    handle
-    , children
-    , hideHandle
-    , isDragging
-    , dropEffect
-    , customStyle
-    , connectDragSource
-    , connectDragPreview
-    , ...restProps
-  } = props
+    handle,
+    children,
+    hideHandle,
+    isDragging,
+    dropEffect,
+    customStyle,
+    connectDragSource,
+    connectDragPreview,
+    ...restProps
+  } = props;
 
-  const opacity = isDragging ? 0.4 : 1
+  const opacity = isDragging ? 0.4 : 1;
   const style = {
     backgroundColor: 'green',
     width: '1rem',
     height: '1rem',
     display: 'inline-block',
     marginRight: '0.75rem',
-    cursor: 'move'
-  }
+    cursor: 'move',
+  };
 
   if (hideHandle) {
     const handleStyle = {
@@ -44,21 +44,21 @@ const DndSource = (props) => {
       width: '100%',
       position: 'relative',
       zIndex: '5',
-      display:'inline-block'
-    }
+      display: 'inline-block',
+    };
     return connectDragSource(
-      <div className='draggable__wrapper' style={handleStyle}>
+      <div className="draggable__wrapper" style={handleStyle}>
         {children({ ...restProps, style })}
-      </div>
-    )
+      </div>,
+    );
   }
 
   return connectDragPreview(
     <div style={{ ...customStyle, opacity }}>
       {children({ ...restProps, style, connectDragSource }, { dropEffect })}
-    </div>
-  )
-}
+    </div>,
+  );
+};
 
 DndSource.propTypes = {
   hideHandle: PropTypes.bool,
@@ -66,7 +66,7 @@ DndSource.propTypes = {
   dragItem: PropTypes.object.isRequired,
   connectDragPreview: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
-  isDragging: PropTypes.bool.isRequired
-}
+  isDragging: PropTypes.bool.isRequired,
+};
 
-export default DragSource(Types.PRODUCT_TO_CART, source, collect)(DndSource)
+export default DragSource(Types.PRODUCT_TO_CART, source, collect)(DndSource);

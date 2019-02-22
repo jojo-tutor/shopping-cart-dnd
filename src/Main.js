@@ -1,30 +1,31 @@
-import React from 'react'
-import { renderRoutes } from 'react-router-config'
-import { Redirect } from 'react-router'
-import { Link } from 'react-router-dom'
-import Navigation from './components/Navigation'
-import { AuthUserContext } from './auth'
-import { auth } from './api'
+import React from 'react';
+import { renderRoutes } from 'react-router-config';
+import { Redirect } from 'react-router';
+import Navigation from './components/Navigation';
+import { AuthUserContext } from './auth';
+import { auth } from './api';
 
 const navigationList = [
   {
     value: '/',
-    label: 'Home'
+    label: 'Home',
   },
   {
     value: '/about',
-    label: 'About'
-  }
-]
+    label: 'About',
+  },
+];
 
-const renderLoginPage = () => <Redirect to='/login' />
+const renderLoginPage = () => <Redirect to="/login" />;
 
 const renderAuthenticatedPage = (props) => {
+  /* eslint-disable */
   const {
-    route
-    , location
-    , session
-  } = props
+    route,
+    location,
+    session,
+  } = props;
+  /* eslint-enable */
 
   return (
     <>
@@ -36,16 +37,16 @@ const renderAuthenticatedPage = (props) => {
       />
       {renderRoutes(route.routes, { session })}
     </>
-  )
-}
+  );
+};
 
-const Main = (props) => (
+const Main = props => (
   <AuthUserContext.Consumer>
-    {session => session
+    {session => (session
       ? renderAuthenticatedPage({ ...props, session })
-      : renderLoginPage()
+      : renderLoginPage())
     }
   </AuthUserContext.Consumer>
-)
+);
 
-export default Main
+export default Main;

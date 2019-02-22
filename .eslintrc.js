@@ -20,5 +20,8 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "react/forbid-prop-types": [0, { "forbid": ["object"] }],
+        "no-param-reassign": 0
     }
 };
