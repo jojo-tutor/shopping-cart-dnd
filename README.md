@@ -3,6 +3,7 @@
 ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
 
+
 A simple shopping cart with drag & drop functionality.
 
 ## About
