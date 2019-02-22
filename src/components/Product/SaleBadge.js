@@ -1,19 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types' 
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const SaleBadge = ({ visible, label }) => visible && (
-  <div className='productCard_sale'>
+  <div className="productCard_sale">
     {label}
   </div>
-)
+);
 
 SaleBadge.defaultProps = {
-  label: 'Sale'
-}
+  label: 'Sale',
+};
 
 SaleBadge.propTypes = {
   visible: PropTypes.bool,
-  label: PropTypes.string
-}
+  label: PropTypes.string,
+};
 
-export default SaleBadge
+export default SaleBadge;
