@@ -6,6 +6,7 @@ ENV NODE_ENV production
 COPY ./ /var/app/
 RUN npm run build --silent
 RUN cp -r build/* public/
+ls -al public
 WORKDIR /var/app/public
 RUN cp -r fonts css/
 RUN rm -rf fonts
