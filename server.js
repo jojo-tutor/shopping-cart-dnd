@@ -11,7 +11,7 @@ const { PORT } = process.env;
 server
   .use(compression())
   .use(express.static(path.join(process.cwd(), 'public')))
-  .get(/\.js$|\.min.css$/, (req, res, next) => {
+  .get(/\.js$|\.build.css$/, (req, res, next) => {
     req.url += '.gz';
     const type = req.originalUrl.includes('.js') ? 'javascript' : 'css';
     res.set('Content-Encoding', 'gzip');

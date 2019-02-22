@@ -76,8 +76,8 @@ module.exports = baseConfig({
       dry: false,
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash:8].min.css',
-      chunkFilename: 'css/[name].[contenthash:8].chunk.min.css',
+      filename: 'css/[name].[contenthash:8].build.css',
+      chunkFilename: 'css/[name].[contenthash:8].chunk.build.css',
     }),
     new CompressionPlugin({
       algorithm: 'gzip',
