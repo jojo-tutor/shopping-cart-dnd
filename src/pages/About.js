@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import 'scss/aboutUs/index.scss';
 
@@ -49,33 +49,52 @@ const developers = [
   },
 ];
 
-const renderDevelopers = () => (
-  <Fragment>
-    { developers.map(item => (
-      <div key={item.name} className="dev">
-        <div className="dev_dp">
-          <img
-            src={item.img}
-            alt={item.name}
-          />
-        </div>
+const technologies = [
+  'React',
+  'Webpack',
+  'Eslint',
+  'Docker Build',
+  'Sass Build',
+  'React Drag and Drop',
+  'React lazy loader',
+  'Basic Authentication',
+  'Yarn',
+  'Firebase',
+];
 
-        <h1 className="dev_title">{item.name}</h1>
-        <p className="dev_position">
-          {`${item.position} at ${item.company}`}
-        </p>
-        <div className="dev_links">
-          { Object.keys(item.links).map(link => (
-            <Link key={link} to={item.links[link]}>
-              <i className={`wtfb wtf-${link}`} />
-            </Link>
-          ))}
-        </div>
+const renderDevelopers = () => developers.map((dev) => {
+  const {
+    img,
+    name,
+    position,
+    company,
+    links,
+  } = dev;
 
+  return (
+    <div key={name} className="dev">
+      <div className="dev_dp">
+        <img
+          src={img}
+          alt={name}
+        />
       </div>
-    ))}
-  </Fragment>
-);
+
+      <h1 className="dev_title">{name}</h1>
+      <p className="dev_position">
+        {`${position} at ${company}`}
+      </p>
+      <div className="dev_links">
+        {Object.entries(links).map(([key, value]) => (
+          <Link key={key} to={value}>
+            <i className={`wtfb wtf-${key}`} />
+          </Link>
+        ))}
+      </div>
+
+    </div>
+  );
+});
 
 const About = () => (
   <div className="page aboutPage">
@@ -111,16 +130,7 @@ const About = () => (
         </div>
         <div className="row">
           <ul className="checklist">
-            <li>React</li>
-            <li>Webpack</li>
-            <li>Eslint</li>
-            <li>Docker Build</li>
-            <li>Sass Build</li>
-            <li>React Drag and Drop</li>
-            <li>React lazy loader</li>
-            <li>Basic Authentication</li>
-            <li>Yarn</li>
-            <li>Firebase</li>
+            {technologies.map(tech => (<li key={tech}>{tech}</li>))}
           </ul>
         </div>
       </div>
