@@ -1,8 +1,8 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const express = require('express')
-const util = require('util')
-const { baseConfig, resolvePath } = require('./base')
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const express = require('express');
+const util = require('util');
+const { baseConfig, resolvePath } = require('./base');
 
 const result = baseConfig({
   mode: 'development',
@@ -17,7 +17,12 @@ const result = baseConfig({
       chunks: 'all',
     },
     runtimeChunk: {
-      name: 'manifest'
+      name: 'manifest',
+    },
+  },
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
     },
   },
   devServer: {
@@ -25,13 +30,10 @@ const result = baseConfig({
     port: process.env.PORT,
     hotOnly: true,
     overlay: true,
-    // historyApiFallback: {
-    //   disableDotRule: true
-    // },
     historyApiFallback: true,
-    before(app){
-      app.use(express.static(resolvePath('public')))
-    }
-  }
-})
-module.exports = result
+    before(app) {
+      app.use(express.static(resolvePath('public')));
+    },
+  },
+});
+module.exports = result;
