@@ -1,27 +1,27 @@
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const merge = require('webpack-merge')
-const webpack = require('webpack')
-const LoadableWebpackPlugin = require('@loadable/webpack-plugin')
-require('dotenv').config({ path: resolvePath('config/.env') })
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const merge = require('webpack-merge');
+const webpack = require('webpack');
+const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
+require('dotenv').config({ path: resolvePath('config/.env') });
 
 const configs = {
-  development : {
-    styleLoader : require.resolve('style-loader')
+  development: {
+    styleLoader: require.resolve('style-loader'),
   },
   production: {
-    styleLoader: MiniCssExtractPlugin.loader
-  }
-}
+    styleLoader: MiniCssExtractPlugin.loader,
+  },
+};
 
-function baseConfig(options){
-  const { mode } = options
+function baseConfig(options) {
+  const { mode } = options;
   const {
-    styleLoader
-  } = configs[mode]
+    styleLoader,
+  } = configs[mode];
   return merge(options, {
     entry: [
-      './src/index.js'
+      './src/index.js',
     ],
     module: {
       rules: [
@@ -37,7 +37,7 @@ function baseConfig(options){
             {
               test: /\.(js|jsx)$/,
               exclude: /node_modules|bower_components/,
-              loader: require.resolve('babel-loader')
+              loader: require.resolve('babel-loader'),
             },
             {
               test: /\.css$/,
@@ -52,43 +52,43 @@ function baseConfig(options){
               loader: require.resolve('file-loader'),
               options: {
                 name: 'media/[name].[hash:8].[ext]',
-              }
-            }
-          ]
-        }
-      ]
+              },
+            },
+          ],
+        },
+      ],
     },
     output: {
       path: path.join(process.cwd(), 'build'),
-      filename: 'js/[name].js'
+      filename: 'js/[name].js',
     },
     plugins: [
       new webpack.DefinePlugin(getEnv()),
-      new LoadableWebpackPlugin()
+      new LoadableWebpackPlugin(),
     ],
     resolve: {
       modules: ['node_modules', 'src'],
       extensions: ['.mjs', '.js', '.json', '.jsx', '.css', '.scss'],
     },
-  })
+  });
 }
 
-function getEnv(){
+function getEnv() {
   const REACT_APP = /^APP_/i;
   const env = Object
     .entries(process.env)
     .filter(([key]) => REACT_APP.test(key))
     .reduce((result, [key, val]) => {
-      result[key.replace(REACT_APP, '')] = JSON.stringify(val)
-      return result
-    }, {})
+      result[key.replace(REACT_APP, '')] = JSON.stringify(val);
+      return result;
+    }, {});
   return {
-    'process.env': env
-  }
+    'process.env': env,
+  };
 }
 
 function resolvePath(relativePath) {
-  return path.join(process.cwd(), relativePath)
+  return path.join(process.cwd(), relativePath);
 }
 
 function getStyleLoaders(cssOptions, mainLoader, preProcessor) {
@@ -113,11 +113,11 @@ function getStyleLoaders(cssOptions, mainLoader, preProcessor) {
         ],
       },
     },
-    preProcessor
-  ].filter(Boolean)
+    preProcessor,
+  ].filter(Boolean);
 }
 
 module.exports = {
   baseConfig,
-  resolvePath
-}
+  resolvePath,
+};

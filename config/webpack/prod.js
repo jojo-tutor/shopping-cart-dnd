@@ -1,11 +1,11 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const CompressionPlugin = require('compression-webpack-plugin')
-const safePostCssParser = require('postcss-safe-parser')
-const { baseConfig } = require('./base')
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+const safePostCssParser = require('postcss-safe-parser');
+const { baseConfig } = require('./base');
 
 module.exports = baseConfig({
   mode: 'production',
@@ -15,43 +15,43 @@ module.exports = baseConfig({
       new TerserPlugin({
         terserOptions: {
           parse: {
-            ecma: 8
+            ecma: 8,
           },
           compress: {
             ecma: 5,
             warnings: false,
             comparisons: false,
-            inline: 2
+            inline: 2,
           },
           mangle: {
-            safari10: true
+            safari10: true,
           },
           output: {
             ecma: 5,
             comments: false,
-            ascii_only: true
-          }
+            ascii_only: true,
+          },
         },
         parallel: true,
         cache: true,
-        sourceMap: true
+        sourceMap: true,
       }),
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
           parser: safePostCssParser,
           map: {
             inline: false,
-            annotation: true
-          }
-        }
-      })
+            annotation: true,
+          },
+        },
+      }),
     ],
     splitChunks: {
-      chunks: 'all'
+      chunks: 'all',
     },
     runtimeChunk: {
-      name: 'manifest'
-    }
+      name: 'manifest',
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -68,22 +68,22 @@ module.exports = baseConfig({
         minifyCSS: true,
         minifyURLs: true,
       },
-      chunks: ['manifest', 'main', 'vendors~main']
+      chunks: ['manifest', 'main', 'vendors~main'],
     }),
     new CleanWebpackPlugin(['build'], {
       root: process.cwd(),
       verbose: true,
-      dry: false
+      dry: false,
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].min.css',
-      chunkFilename: 'css/[name].[contenthash:8].chunk.min.css'
+      chunkFilename: 'css/[name].[contenthash:8].chunk.min.css',
     }),
     new CompressionPlugin({
       algorithm: 'gzip',
       test: /\.js$|\.css$/,
       cache: true,
-      deleteOriginalAssets: false
-    })
-  ]
-})
+      deleteOriginalAssets: false,
+    }),
+  ],
+});
