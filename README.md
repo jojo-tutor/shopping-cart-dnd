@@ -1,4 +1,4 @@
-# Shopping Cart DnD [![Twitter](https://img.shields.io/twitter/url/https/github.com/jojo-tutor/react-error-handler.svg?style=social)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fjojo-tutor%2Freact-error-handler)
+# Shopping Cart DnD [![Twitter](https://img.shields.io/twitter/url/https/github.com/jojo-tutor/react-error-handler.svg?style=social)](https://twitter.com/intent/tweet?text=ShoppingCartDnD:&url=https%3A%2F%2Fgithub.com%2Fjojo-tutor%2Freact-error-handler)
 
 ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
@@ -9,9 +9,8 @@ A simple shopping cart with drag & drop functionality.
 ## About
 This app is prepared for CebuJS Meetup.
 
-## Playground
-CodeSandbox:
- > https://github.com/jojo-tutor/shopping-cart-dnd
+## Live
+ > https://shopping-cart.dnamicro.net/
 
 ## Run on Local
 ```sh

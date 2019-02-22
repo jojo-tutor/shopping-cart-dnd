@@ -1,28 +1,27 @@
-import React from 'react'
-import PropTypes from 'prop-types' 
-import startCase from 'lodash/startCase'
-import Image from '../Image'
+import React from 'react';
+import PropTypes from 'prop-types';
+import startCase from 'lodash/startCase';
 
 const FormField = (props) => {
   const {
-    form
-    , value
-    , onChange
-  } = props
+    form,
+    value,
+    onChange,
+  } = props;
 
   const {
-    id
-  } = form
+    id,
+  } = form;
 
-  const type = form.type || id
-  const required = form.required !== false
-  const label = `${startCase(id)}${required ? '*' : ''}`
+  const type = form.type || id;
+  const required = form.required !== false;
+  const label = `${startCase(id)}${required ? '*' : ''}`;
 
   return (
-    <div className='field'>
-      <label htmlFor={id}>
+    <div className="field">
+      <div className="label">
         { label }
-      </label>
+      </div>
       <input
         id={id}
         type={type}
@@ -32,16 +31,16 @@ const FormField = (props) => {
         onChange={onChange}
       />
     </div>
-  )
-}
+  );
+};
 
 FormField.propTypes = {
   form: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
-    PropTypes.number
-  ]).isRequired
-}
+    PropTypes.number,
+  ]).isRequired,
+};
 
-export default FormField
+export default FormField;
