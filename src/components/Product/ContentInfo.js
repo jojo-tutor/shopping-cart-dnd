@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { formatCurrency } from '../../utils/tools';
 
-const renderSalePrice = ({ price }) => ( // eslint-disable-line
+const renderSalePrice = ({ price }) => ( // eslint-disable-line react/prop-types
   <div className="sale">
     { formatCurrency(price) }
   </div>
 );
 
-const renderAction = ({ id, onAddCartItem }) => ( // eslint-disable-line
+const renderAction = ({ id, onAddCartItem }) => ( // eslint-disable-line react/prop-types
   <button
     type="button"
     className="productCard_buynow"

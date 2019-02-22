@@ -37,7 +37,7 @@ class Signup extends PureComponent {
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({ isProcessing: true }, () => {
-      this.doSignup(this.state.fieldValues);
+      this.doSignup(this.state.fieldValues); // eslint-disable-line
     });
   }
 
@@ -46,7 +46,7 @@ class Signup extends PureComponent {
       const { email, password } = data;
       const { user } = await auth.doCreateUserWithEmailAndPassword({ email, password });
       await db.createDocument('users', { ...data, id: user.uuid });
-      this.props.history.push('/');
+      this.props.history.push('/'); // eslint-disable-line
     } catch ({ message: error }) {
       this.setState({
         error,
