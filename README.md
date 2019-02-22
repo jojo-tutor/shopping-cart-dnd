@@ -8,9 +8,8 @@ A simple shopping cart with drag & drop functionality.
 ## About
 This app is prepared for CebuJS Meetup.
 
-## Playground
-CodeSandbox:
- > https://github.com/jojo-tutor/shopping-cart-dnd
+## Live
+ > https://shopping-cart.dnamicro.net/
 
 ## Run on Local
 ```sh
