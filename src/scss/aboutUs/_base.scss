@@ -1,0 +1,126 @@
+.aboutPage {
+	background: linear-gradient(
+		90deg,
+		#123177,
+		#040727
+	);
+
+	section {
+		padding: 5em 1em;
+		min-height: 50vh;
+	}
+
+	.container {
+		padding: 0 1em;
+		max-width: 1280px;
+	}
+
+	.row_header {
+
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 2em;
+
+		.logos {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			margin-top: 4em;
+			margin-bottom: 4em;
+		}
+
+		.logo {
+			height: 20em;
+			&.cebujs {
+				margin-top: 2em;
+				height: 3em;
+			}
+		}
+
+		
+		.title {
+			text-align: center;
+			font-size: 1.25em;
+			letter-spacing: .15em;
+			font-weight: 600;
+			font-family: $font-family;
+			color: $teal;
+			text-transform: uppercase;
+		}
+	}
+
+	.desc {
+		font-size: 1.25em;
+		font-weight: 400;
+		line-height: 2;
+		text-align: center;
+		color: $white;
+	}
+
+	.checklist {
+		margin: 0 auto;
+		font-size: 1.25em;
+		font-weight: 500;
+		color: $white;
+		list-style-image: url('../images/check.png');
+		columns: 2;
+
+		li {
+			padding-left: 1em;
+			margin-bottom: 1em;
+		}
+	}
+}
+
+.aboutPage .devs {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	grid-gap: 1em;
+
+	.dev {
+		text-align: center;
+		display: flex;
+		align-items: stretch;
+		justify-content: flex-start;
+		flex-direction: column;
+
+		// .dev_dp
+		&_dp {
+			width: 100%;
+			img {
+				width: 100%;
+				object-fit: cover;
+				object-position: center center;
+			}
+		}
+
+		// .dev_title
+		&_title {
+			margin-bottom: .15em;
+			font-size: 1.25em;
+			font-weight: 500;
+			color: $white;
+		}
+
+		// .dev_position
+		&_position {
+			font-size: .8em;
+			line-height: 1.5;
+			font-weight: 400;
+			color: rgba($white,.75);
+		}
+
+		// .dev_links
+		&_links {
+			margin-top: auto;
+			font-size: 1.25em;
+			color: $white;
+			a {
+				font-size: 1em;
+				color: inherit;
+				margin: 0.25em;
+			}
+		}
+	}
+}
