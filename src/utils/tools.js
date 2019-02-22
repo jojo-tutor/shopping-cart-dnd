@@ -1,78 +1,70 @@
 export const makeCancelable = (promise) => {
-  let hasCanceled = false
+  let hasCanceled = false;
 
   const wrappedPromise = new Promise((resolve, reject) => {
-    promise.then((val) =>
-      hasCanceled ? reject({ isCanceled: true }) : resolve(val)
-    )
-    promise.catch((error) =>
-      hasCanceled ? reject({ isCanceled: true }) : reject(error)
-    )
-  })
+    promise.then(val => (hasCanceled ? reject({ isCanceled: true }) : resolve(val))); // eslint-disable-line
+    promise.catch(error => (hasCanceled ? reject({ isCanceled: true }) : reject(error))); // eslint-disable-line
+  });
 
   return {
     getPromise: () => wrappedPromise,
     cancel() {
-      hasCanceled = true
+      hasCanceled = true;
     },
-  }
-}
+  };
+};
 
 export const formatCurrency = (number, numberFormat) => {
   numberFormat = numberFormat || {
     locale: 'en-ph',
     options: {
       style: 'currency',
-      currency: 'Php'
-    }
-  }
+      currency: 'Php',
+    },
+  };
 
   return new Intl.NumberFormat(
     numberFormat.locale,
-    numberFormat.options
-  ).format(Number(number))
-}
+    numberFormat.options,
+  ).format(Number(number));
+};
 
-export const updateListItem = (list, comparatorFn, updaterFn) => list.map(item => {
+export const updateListItem = (list, comparatorFn, updaterFn) => list.map((item) => {
   if (comparatorFn(item)) {
     item = {
       ...item,
-      ...updaterFn(item)
-    }
+      ...updaterFn(item),
+    };
   }
-  return item
-})
+  return item;
+});
 
 
 export const getCartTotalPrice = (cartList) => {
   const total = cartList.reduce((acc, curr) => {
-    const { quantity, product = {} } = curr
-    return acc + ((Number(quantity) * Number(product.price)))
-  }, 0)
+    const { quantity, product = {} } = curr;
+    return acc + ((Number(quantity) * Number(product.price)));
+  }, 0);
 
-  return formatCurrency(total)
-}
+  return formatCurrency(total);
+};
 
-export const getCartTotalCount = (cartList) => {
-  return cartList.reduce((acc, curr) => {
-    const { quantity, product = {} } = curr
-    return acc + Number(quantity)
-  }, 0)
-}
+export const getCartTotalCount = cartList => cartList.reduce((acc, curr) => {
+  const { quantity } = curr;
+  return acc + Number(quantity);
+}, 0);
 
 
 export const getOrderTotalPrice = (orderItems) => {
   const total = orderItems.reduce((acc, curr) => {
-    const { quantity, price } = curr
-    return acc + Number(price)
-  }, 0)
+    const { price } = curr;
+    return acc + Number(price);
+  }, 0);
 
-  return formatCurrency(total)
-}
+  return formatCurrency(total);
+};
 
-export const getOrderTotalCount = (orderItems) => {
-  return orderItems.reduce((acc, curr) => {
-    const { quantity } = curr
-    return acc + Number(quantity)
-  }, 0)
-}
+export const getOrderTotalCount = orderItems => orderItems.reduce((acc, curr) => {
+  const { quantity } = curr;
+  return acc + Number(quantity);
+}, 0);

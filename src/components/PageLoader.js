@@ -1,20 +1,23 @@
-import React from 'react'
-import PropTypes from 'prop-types' 
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const PageLoader = ({ className }) => ( 
+const PageLoader = ({ className }) => (
   <div className={className}>
-    <div className='loader'>
-      <hr/><hr/><hr/><hr/>
+    <div className="loader">
+      <hr />
+      <hr />
+      <hr />
+      <hr />
     </div>
-  </div> 
-)
+  </div>
+);
 
 PageLoader.defaultProps = {
-  className: 'page_loader'
-}
+  className: 'page_loader',
+};
 
 PageLoader.propTypes = {
-  className: PropTypes.string
-}
+  className: PropTypes.string,
+};
 
-export default PageLoader
+export default PageLoader;

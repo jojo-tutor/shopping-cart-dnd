@@ -1,42 +1,42 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import cn from 'classnames'
-import Button from './Button'
-import Logo from './Logo'
-import Preloader from './Preloader'
-import Error from './Error'
-import HeaderTitle from './HeaderTitle'
-import FooterLink from './FooterLink'
-import FormList from './FormList'
+import React from 'react';
+import PropTypes from 'prop-types';
+import cn from 'classnames';
+import Button from './Button';
+import Logo from './Logo';
+import Preloader from './Preloader';
+import Error from './Error';
+import HeaderTitle from './HeaderTitle';
+import FooterLink from './FooterLink';
+import FormList from './FormList';
 
 const Form = (props) => {
   const {
-    error
-    , name
-    , isProcessing
-    , fieldValues
-    , formList
-    , preloaderLabel
-    , headerTitleLabel
-    , submitButtonLabel
-    , footerLinkTo
-    , footerLinkLabel
-    , onChange
-    , onSubmit
-  } = props
+    error,
+    name,
+    isProcessing,
+    fieldValues,
+    formList,
+    preloaderLabel,
+    headerTitleLabel,
+    submitButtonLabel,
+    footerLinkTo,
+    footerLinkLabel,
+    onChange,
+    onSubmit,
+  } = props;
 
-  const className = cn('auth', name, { 'auth-processing': isProcessing })
+  const className = cn('auth', name, { 'auth-processing': isProcessing });
 
   return (
     <div className={className}>
       <Logo />
-      <div className='auth_paper'>
-        <Error visible={!!error} label={error} /> 
+      <div className="auth_paper">
+        <Error visible={!!error} label={error} />
         <Preloader visible={isProcessing} label={preloaderLabel} />
         <HeaderTitle label={headerTitleLabel} />
-        <form 
+        <form
           name={name}
-          className='auth_form' 
+          className="auth_form"
           onSubmit={onSubmit}
         >
           <FormList
@@ -44,7 +44,7 @@ const Form = (props) => {
             fieldValues={fieldValues}
             onChange={onChange}
           />
-          
+
           <Button
             label={submitButtonLabel}
             disabled={isProcessing}
@@ -56,8 +56,13 @@ const Form = (props) => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
+
+Form.defaultProps = {
+  error: '',
+  isProcessing: false,
+};
 
 Form.propTypes = {
   error: PropTypes.string,
@@ -71,7 +76,7 @@ Form.propTypes = {
   footerLinkLabel: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  formList: PropTypes.arrayOf(PropTypes.object).isRequired
-}
+  formList: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
-export default Form
+export default Form;

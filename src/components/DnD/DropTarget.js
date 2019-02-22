@@ -1,18 +1,17 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
-import { DropTarget } from 'react-dnd'
-import Types from './Types'
+import PropTypes from 'prop-types';
+import { DropTarget } from 'react-dnd';
+import Types from './Types';
 
 const target = {
-  drop(props, monitor, component) {
+  drop(props, monitor) {
     if (monitor.didDrop()) {
-      return
+      return;
     }
-    const { targetItem, onDrop } = props
-    const sourceItem = monitor.getItem()
-    onDrop(sourceItem, targetItem)
-  }
-}
+    const { targetItem, onDrop } = props;
+    const sourceItem = monitor.getItem();
+    onDrop(sourceItem, targetItem);
+  },
+};
 
 const collect = (connect, monitor) => ({
   connectDropTarget: connect.dropTarget(),
@@ -20,22 +19,22 @@ const collect = (connect, monitor) => ({
   isOverCurrent: monitor.isOver({ shallow: true }),
   canDrop: monitor.canDrop(),
   itemType: monitor.getItemType(),
-  sourceItem: monitor.getItem()
-})
+  sourceItem: monitor.getItem(),
+});
 
 const DndTarget = (props) => {
   // own props
-  const { children, ...restProps } = props
+  const { children, ...restProps } = props;
 
   // injected props
-  const { connectDropTarget } = restProps
+  const { connectDropTarget } = restProps;
 
-  return connectDropTarget(children(restProps))
-}
+  return connectDropTarget(children(restProps));
+};
 
 DndTarget.propTypes = {
   children: PropTypes.func.isRequired,
-  onDrop: PropTypes.func.isRequired
-}
+  onDrop: PropTypes.func.isRequired,
+};
 
-export default DropTarget(Types.PRODUCT_TO_CART, target, collect)(DndTarget)
+export default DropTarget(Types.PRODUCT_TO_CART, target, collect)(DndTarget);

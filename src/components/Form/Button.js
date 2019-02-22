@@ -1,17 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types' 
-import Image from '../Image'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Button = ({ label }) => (
   <input
-    className='btn btn-primary'
-    type='submit'
+    className="btn btn-primary"
+    type="submit"
     value={label}
   />
-)
+);
 
 Button.propTypes = {
-  label: PropTypes.string.isRequired
-}
+  label: PropTypes.string.isRequired,
+};
 
-export default Button
+export default Button;
