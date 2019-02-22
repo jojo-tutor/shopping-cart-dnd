@@ -56,7 +56,11 @@ class Signup extends PureComponent {
   }
 
   render() {
-    const { fieldValues, isProcessing, error } = this.state;
+    const {
+      error,
+      fieldValues,
+      isProcessing,
+    } = this.state;
 
     return (
       <Form
