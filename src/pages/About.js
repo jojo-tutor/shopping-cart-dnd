@@ -28,7 +28,7 @@ const developers = [
   {
     name: 'Bon Joseph Lazaga',
     position: 'Lead DevOps',
-    img: '/images/jasper.jpg',
+    img: '/images/bon.jpg',
     company: 'DNAMICRO',
     links: {
       github: '',
@@ -140,7 +140,7 @@ const About = () => (
       <div className="container">
         <div className="row row_header row-center">
           <h1 className="title">
-            Developer
+            Developers
           </h1>
         </div>
         <div className="row row-center">
