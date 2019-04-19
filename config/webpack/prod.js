@@ -80,12 +80,12 @@ module.exports = baseConfig({
       filename: 'css/[name].[contenthash:8].build.css',
       chunkFilename: 'css/[name].[contenthash:8].chunk.build.css',
     }),
-    // new CompressionPlugin({
-    //   algorithm: 'gzip',
-    //   test: /\.js$|\.css$/,
-    //   cache: true,
-    //   deleteOriginalAssets: false,
-    // }),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.js$|\.css$/,
+      cache: true,
+      deleteOriginalAssets: false,
+    }),
     new CopyPlugin([
       { from: 'public', to: '' },
     ]),
