@@ -6,7 +6,7 @@ require('dotenv').config({ path: path.join(process.cwd(), 'config/.env') });
 const server = express();
 const outputPath = path.join(process.cwd(), 'build');
 
-const { PORT } = process.env;
+const { PORT = 3000 } = process.env;
 
 server
   .use(compression())
