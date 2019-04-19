@@ -5,6 +5,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
+const CopyPlugin = require('copy-webpack-plugin');
 const { baseConfig } = require('./base');
 
 module.exports = baseConfig({
@@ -85,5 +86,8 @@ module.exports = baseConfig({
       cache: true,
       deleteOriginalAssets: false,
     }),
+    new CopyPlugin([
+      { from: 'public', to: '' },
+    ]),
   ],
 });
