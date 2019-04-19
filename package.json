@@ -9,8 +9,7 @@
     "serve": "NODE_ENV=production node server.js",
     "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false",
     "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true",
-    "heroku-deploy": "yarn heroku-prebuild && yarn && yarn build && yarn heroku-postbuild && yarn serve",
-    "start": "yarn heroku-deploy",
+    "deploy": "yarn heroku-prebuild && yarn build && yarn heroku-postbuild && yarn serve",
     "lint": "eslint src"
   },
   "dependencies": {
