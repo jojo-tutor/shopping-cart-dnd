@@ -17,6 +17,17 @@ git clone https://github.com/jojo-tutor/shopping-cart-dnd.git
 cd shopping-cart-dnd
 yarn && yarn dev
 ```
+## Important
+This app will not work if there is no config file. The config file should be `shopping-cart-dnd/config/.env` and should look like this:
+```env
+APP_FIREBASE_KEY=replace_with_your_key
+APP_FIREBASE_AUTH_DOMAIN=replace_with_your_domain
+APP_FIREBASE_DATABASE=replace_with_your_database
+APP_FIREBASE_PROJECT_ID=replace_with_your_project_id
+APP_FIREBASE_STORAGE_BUCKET=replace_with_your_storage_bucket
+APP_FIREBASE_SENDER_ID=replace_with_your_sender_id
+PORT=3000
+```
 
 ## Authors
 [Jojo E. Tutor](https://www.facebook.com/jojo-tutor "View Jojo's FB Profile")
