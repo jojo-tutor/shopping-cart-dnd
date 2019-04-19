@@ -29,4 +29,9 @@
 	}
 }
 
+@media(min-width: 1440px) {
+	.product_list {
+		grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	}
+}
 
