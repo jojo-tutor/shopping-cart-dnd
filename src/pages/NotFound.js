@@ -23,7 +23,7 @@ const Notfound = () => (
         </div>
         <div className="col col-sm-6 col_graphic">
           <Image
-            src="images/404.gif"
+            src="/images/404.png"
             alt="Not Found Page"
           />
         </div>
